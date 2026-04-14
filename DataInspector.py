@@ -1,0 +1,88 @@
+import pandas as pd
+import numpy as np
+
+class DataInspector:
+
+    @staticmethod
+    def display_dimensions(df: pd.DataFrame, name: str = "Dataset") -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        print("=" * 50)
+        print(f"📊 {name}")
+        print("=" * 50)
+        print(f"📈 Rows: {df.shape[0]:,}")
+        print(f"📑 Columns: {df.shape[1]}")
+        print(f"💾 Size: {df.shape[0]:,} × {df.shape[1]}")
+        print("=" * 50)
+
+    @staticmethod
+    def display_null_value(df: pd.DataFrame, name: str = "Null value") -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        print("=" * 50)
+        print(f"📊 NULL ANALYSIS: {name}")
+        print("=" * 50)
+
+        nulls_per_column = df.isnull().sum()
+
+        if nulls_per_column.sum() == 0:
+            print("✅ No null values found!")
+        else:
+            print(f"📈 Total nulls: {nulls_per_column.sum():,}\n")
+            print("📑 Nulls per column:")
+            for col, null_count in nulls_per_column[nulls_per_column > 0].items():
+                print(f"   • {col}: {null_count:,}")
+
+        print("=" * 50)
+
+    @staticmethod
+    def display_unique_value(df: pd.DataFrame, name: str = "Unique value", column_name: str = None) -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if column_name is None:
+            raise ValueError("column_name must be provided")
+
+        unique_values = df[column_name].unique()
+        unique_count = df[column_name].nunique()
+        total_rows = len(df)
+
+        print("=" * 50)
+        print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
+        print(f"📍 Column: {column_name}")
+        print("=" * 50)
+        print(f"📈 Total unique values: {unique_count:,} / {total_rows:,} ({unique_count / total_rows * 100:.2f}%)")
+
+        print(f"\n🔍 Unique values (first {min(20, unique_count)}):")
+        for i, value in enumerate(unique_values[:20]):
+            print(f"   {i + 1}. {value}")
+
+        if unique_count > 20:
+            print(f"   ... and {unique_count - 20} more")
+
+        print("=" * 50)
+
+    @staticmethod
+    def get_shape_info(df: pd.DataFrame, name: str = "Dataset") -> tuple:
+
+        return (df.shape[0], df.shape[1],
+                df.memory_usage(deep=True).sum() / 1024 ** 2)
+
+
