@@ -1,0 +1,901 @@
+sample_id,batch_id,product,date_received,priority,client_name
+SMP-00001,BAT-0164,crude_oil,2026-01-03 18:16:45,high,NordFuel
+SMP-00002,BAT-0027,crude_oil,2026-02-07 05:17:41,normal,Baltic Energy
+SMP-00003,BAT-0054,gasoline,2026-03-10 11:21:35,urgent,FuelCore
+SMP-00004,BAT-0017,diesel,2026-03-30 23:45:40,urgent,FuelCore
+SMP-00005,BAT-0017,kerosene,2026-02-07 09:14:14,normal,Orlenex
+SMP-00006,BAT-0129,diesel,2026-02-19 14:59:02,urgent,
+SMP-00007,BAT-0141,diesel,2026-01-27 01:37:36,normal,ChemTrans
+SMP-00008,BAT-0018,crude_oil,2026-03-25 19:05:44,normal,ChemTrans
+SMP-00009,BAT-0115,diesel,2026-02-11 07:03:19,normal,Orlenex
+SMP-00010,BAT-0074,kerosene,2026-03-09 23:10:33,urgent,ChemTrans
+SMP-00011,BAT-0021,diesel,2026-01-07 23:39:58,normal,FuelCore
+SMP-00012,BAT-0003,kerosene,2026-03-02 15:24:21,urgent,PetroMax
+SMP-00013,BAT-0171,lubricant_oil,2026-01-30 09:36:10,urgent,PetroMax
+SMP-00014,BAT-0164,gasoline,2026-01-17 00:30:47,high,ChemTrans
+SMP-00015,BAT-0105,lubricant_oil,2026-03-15 02:24:33,normal,NordFuel
+SMP-00016,BAT-0198,gasoline,2026-02-04 10:13:47,normal,Orlenex
+SMP-00017,BAT-0049,gasoline,2026-01-05 15:25:41,high,PetroMax
+SMP-00018,BAT-0050,kerosene,2026-03-06 21:23:52,urgent,FuelCore
+SMP-00019,BAT-0169,crude_oil,2026-01-28 21:16:12,normal,FuelCore
+SMP-00020,BAT-0200,kerosene,2026-01-22 13:56:12,normal,FuelCore
+SMP-00021,BAT-0115,diesel,2026-03-14 12:50:33,high,Orlenex
+SMP-00022,BAT-0120,kerosene,2026-01-07 09:05:22,normal,Orlenex
+SMP-00023,BAT-0125,diesel,2026-01-27 19:59:07,normal,PetroMax
+SMP-00024,BAT-0072,kerosene,2026-01-25 19:50:06,high,Orlenex
+SMP-00025,BAT-0145,diesel,2026-02-15 11:36:27,high,Baltic Energy
+SMP-00026,BAT-0145,crude_oil,2026-02-04 01:02:36,normal,FuelCore
+SMP-00027,BAT-0023,gasoline,2026-03-27 22:20:58,normal,Orlenex
+SMP-00028,BAT-0185,kerosene,2026-02-17 18:28:08,normal,NordFuel
+SMP-00029,BAT-0180,kerosene,2026-01-27 15:16:51,normal,NordFuel
+SMP-00030,BAT-0059,gasoline,2026-01-18 18:07:44,normal,FuelCore
+SMP-00031,BAT-0030,crude_oil,2026-02-09 05:42:57,normal,ChemTrans
+SMP-00032,BAT-0161,diesel,2026-01-27 00:40:12,high,NordFuel
+SMP-00033,BAT-0140,diesel,2026-03-05 05:05:53,normal,Baltic Energy
+SMP-00034,BAT-0148,lubricant_oil,2026-01-03 08:20:25,urgent,FuelCore
+SMP-00035,BAT-0010,kerosene,2026-01-09 21:11:39,normal,Baltic Energy
+SMP-00036,BAT-0074,kerosene,2026-03-27 20:31:16,high,PetroMax
+SMP-00037,BAT-0107,kerosene,2026-02-16 04:21:06,normal,ChemTrans
+SMP-00038,BAT-0149,kerosene,2026-03-26 08:12:11,normal,ChemTrans
+SMP-00039,BAT-0167,diesel,2026-02-18 10:11:57,urgent,NordFuel
+SMP-00040,BAT-0098,gasoline,2026-03-03 04:32:52,high,Orlenex
+SMP-00041,BAT-0084,crude_oil,2026-01-29 19:35:47,normal,Orlenex
+SMP-00042,BAT-0109,gasoline,2026-02-14 16:30:16,high,NordFuel
+SMP-00043,BAT-0156,kerosene,2026-03-23 04:39:19,urgent,Baltic Energy
+SMP-00044,BAT-0094,diesel,2026-01-10 02:01:33,urgent,Baltic Energy
+SMP-00045,BAT-0102,lubricant_oil,2026-02-05 20:19:03,normal,Orlenex
+SMP-00046,BAT-0030,diesel,2026-01-05 17:39:56,urgent,Baltic Energy
+SMP-00047,BAT-0093,crude_oil,2026-03-08 21:45:02,normal,FuelCore
+SMP-00048,BAT-0034,lubricant_oil,2026-01-25 16:03:59,high,PetroMax
+SMP-00049,BAT-0134,gasoline,2026-02-14 19:18:59,normal,PetroMax
+SMP-00050,BAT-0136,gasoline,2026-02-14 09:14:00,normal,Orlenex
+SMP-00051,BAT-0171,gasoline,2026-02-06 16:11:04,urgent,FuelCore
+SMP-00052,BAT-0185,crude_oil,2026-01-29 06:13:30,normal,Baltic Energy
+SMP-00053,BAT-0087,gasoline,2026-01-01 22:13:39,normal,NordFuel
+SMP-00054,BAT-0070,kerosene,2026-03-06 14:25:44,,ChemTrans
+SMP-00055,BAT-0075,gasoline,2026-01-12 23:35:01,normal,FuelCore
+SMP-00056,BAT-0075,crude_oil,2026-02-09 15:47:37,normal,Baltic Energy
+SMP-00057,BAT-0045,lubricant_oil,2026-01-16 04:12:44,high,FuelCore
+SMP-00058,BAT-0116,crude_oil,2026-01-06 20:33:48,normal,Baltic Energy
+SMP-00059,BAT-0100,kerosene,2026-03-17 12:38:01,normal,ChemTrans
+SMP-00060,BAT-0172,lubricant_oil,2026-01-10 09:45:40,normal,Orlenex
+SMP-00061,BAT-0153,kerosene,2026-01-16 07:26:05,normal,FuelCore
+SMP-00062,BAT-0095,lubricant_oil,2026-02-13 02:39:58,normal,Baltic Energy
+SMP-00063,BAT-0057,kerosene,2026-03-28 05:20:12,normal,PetroMax
+SMP-00064,BAT-0179,diesel,2026-03-16 00:13:40,high,Orlenex
+SMP-00065,BAT-0062,diesel,2026-01-29 14:42:46,normal,ChemTrans
+SMP-00066,BAT-0188,crude_oil,2026-03-17 05:43:42,normal,Baltic Energy
+SMP-00067,BAT-0092,crude_oil,2026-03-26 09:27:22,high,Baltic Energy
+SMP-00068,BAT-0090,kerosene,2026-01-05 10:41:40,high,Baltic Energy
+SMP-00069,BAT-0033,crude_oil,2026-01-24 05:54:32,high,Baltic Energy
+SMP-00070,BAT-0074,kerosene,2026-01-20 18:26:57,normal,PetroMax
+SMP-00071,BAT-0045,gasoline,2026-02-19 17:29:12,normal,NordFuel
+SMP-00072,BAT-0164,lubricant_oil,2026-01-19 00:00:17,high,NordFuel
+SMP-00073,BAT-0044,lubricant_oil,2026-02-26 17:00:15,normal,FuelCore
+SMP-00074,BAT-0104,gasoline,2026-02-14 08:50:03,normal,PetroMax
+SMP-00075,BAT-0120,crude_oil,2026-01-27 07:15:15,normal,NordFuel
+SMP-00076,BAT-0074,lubricant_oil,2026-01-02 03:03:17,high,Orlenex
+SMP-00077,BAT-0143,gasoline,2026-03-15 15:11:46,normal,ChemTrans
+SMP-00078,BAT-0087,lubricant_oil,2026-03-22 18:03:14,normal,Orlenex
+SMP-00079,BAT-0135,lubricant_oil,2026-03-17 12:57:47,high,NordFuel
+SMP-00080,BAT-0088,lubricant_oil,2026-02-04 17:32:54,high,FuelCore
+SMP-00081,BAT-0089,diesel,2026-01-29 12:48:13,normal,FuelCore
+SMP-00082,BAT-0026,diesel,2026-01-01 20:04:25,urgent,NordFuel
+SMP-00083,BAT-0102,kerosene,2026-01-19 10:08:15,urgent,Baltic Energy
+SMP-00084,BAT-0166,gasoline,2026-03-12 02:27:18,normal,FuelCore
+SMP-00085,BAT-0085,gasoline,2026-02-26 21:13:54,high,PetroMax
+SMP-00086,BAT-0158,diesel,2026-01-22 14:36:23,urgent,Orlenex
+SMP-00087,BAT-0147,lubricant_oil,2026-01-15 21:10:52,normal,ChemTrans
+SMP-00088,BAT-0019,crude_oil,2026-02-11 11:17:11,normal,PetroMax
+SMP-00089,BAT-0101,lubricant_oil,2026-01-13 16:44:24,high,NordFuel
+SMP-00090,BAT-0062,diesel,2026-01-07 20:47:57,normal,PetroMax
+SMP-00091,BAT-0057,kerosene,2026-01-30 12:13:04,normal,ChemTrans
+SMP-00092,BAT-0062,diesel,2026-01-30 12:45:59,high,NordFuel
+SMP-00093,BAT-0195,lubricant_oil,2026-03-12 15:45:12,high,NordFuel
+SMP-00094,BAT-0120,crude_oil,2026-03-20 06:41:53,urgent,Orlenex
+SMP-00095,BAT-0044,gasoline,2026-01-17 18:25:03,normal,ChemTrans
+SMP-00096,BAT-0158,kerosene,2026-03-06 08:14:37,normal,PetroMax
+SMP-00097,BAT-0021,gasoline,2026-02-09 18:06:44,normal,NordFuel
+SMP-00098,BAT-0166,gasoline,2026-02-25 06:32:29,urgent,PetroMax
+SMP-00099,BAT-0151,diesel,2026-03-15 08:52:47,high,Orlenex
+SMP-00100,BAT-0153,kerosene,2026-03-17 10:30:48,normal,FuelCore
+SMP-00101,BAT-0040,kerosene,2026-02-01 01:54:49,normal,PetroMax
+SMP-00102,BAT-0099,crude_oil,2026-01-29 16:03:13,normal,PetroMax
+SMP-00103,BAT-0098,gasoline,2026-02-13 01:47:37,normal,FuelCore
+SMP-00104,BAT-0030,lubricant_oil,2026-01-20 17:34:04,normal,ChemTrans
+SMP-00105,BAT-0130,kerosene,2026-02-23 02:47:06,normal,Baltic Energy
+SMP-00106,BAT-0057,kerosene,2026-02-06 15:45:42,rush,FuelCore
+SMP-00107,BAT-0018,gasoline,2026-01-05 16:07:08,high,PetroMax
+SMP-00108,BAT-0152,kerosene,2026-02-08 02:03:10,normal,NordFuel
+SMP-00109,BAT-0091,kerosene,2026-03-02 06:33:33,normal,FuelCore
+SMP-00110,BAT-0045,lubricant_oil,2026-01-17 12:49:29,normal,NordFuel
+SMP-00111,BAT-0009,gasoline,2026-01-23 03:55:23,normal,NordFuel
+SMP-00112,BAT-0193,diesel,2026-01-30 05:42:43,high,PetroMax
+SMP-00113,BAT-0072,lubricant_oil,2026-02-22 15:25:18,normal,FuelCore
+SMP-00114,BAT-0037,lubricant_oil,2026-03-03 17:36:12,normal,Orlenex
+SMP-00115,BAT-0137,kerosene,2026-01-22 11:34:49,urgent,
+SMP-00116,BAT-0041,kerosene,2026-02-14 15:45:51,normal,Orlenex
+SMP-00117,BAT-0110,crude_oil,2026-03-10 15:44:07,normal,
+SMP-00118,BAT-0043,kerosene,2026-02-04 10:19:36,high,FuelCore
+SMP-00119,BAT-0064,lubricant_oil,2026-02-28 16:25:45,normal,ChemTrans
+SMP-00120,BAT-0082,diesel,2026-02-07 21:23:54,high,ChemTrans
+SMP-00121,BAT-0022,gasoline,2026-01-09 00:08:00,normal,NordFuel
+SMP-00122,BAT-0171,diesel,2026-01-12 22:19:20,normal,NordFuel
+SMP-00123,BAT-0161,crude_oil,2026-02-18 12:06:27,normal,Baltic Energy
+SMP-00124,BAT-0070,crude_oil,2026-02-25 19:46:31,normal,ChemTrans
+SMP-00125,BAT-0195,diesel,2026-01-15 22:50:42,normal,Orlenex
+SMP-00126,BAT-0134,kerosene,2026-03-10 09:05:29,high,Orlenex
+SMP-00127,BAT-0060,crude_oil,2026-01-21 00:21:16,normal,ChemTrans
+SMP-00128,BAT-0008,kerosene,2026-03-25 07:21:55,normal,FuelCore
+SMP-00129,BAT-0051,kerosene,2026-03-20 21:48:09,normal,Baltic Energy
+SMP-00130,BAT-0099,diesel,2026-02-11 00:53:16,normal,ChemTrans
+SMP-00131,BAT-0026,diesel,2026-03-06 02:36:18,normal,ChemTrans
+SMP-00132,BAT-0139,gasoline,2026-01-18 09:04:36,normal,PetroMax
+SMP-00133,BAT-0096,kerosene,2026-02-27 05:31:04,normal,Baltic Energy
+SMP-00134,BAT-0097,gasoline,2026-03-13 14:19:56,high,NordFuel
+SMP-00135,BAT-0043,crude_oil,2026-03-22 02:36:38,high,FuelCore
+SMP-00136,BAT-0006,gasoline,2026-01-26 16:28:17,urgent,PetroMax
+SMP-00137,BAT-0041,crude_oil,2026-01-11 03:56:52,normal,NordFuel
+SMP-00138,BAT-0102,kerosene,2026-02-17 19:40:41,high,Baltic Energy
+SMP-00139,BAT-0089,lubricant_oil,2026-02-10 12:39:31,urgent,ChemTrans
+SMP-00140,BAT-0055,diesel,2026-01-13 14:02:04,normal,PetroMax
+SMP-00141,BAT-0038,lubricant_oil,2026-02-27 09:59:08,normal,PetroMax
+SMP-00142,BAT-0013,kerosene,2026-03-31 17:42:03,normal,Baltic Energy
+SMP-00143,BAT-0105,kerosene,2026-03-16 01:44:51,normal,Baltic Energy
+SMP-00144,BAT-0095,kerosene,2026-02-19 09:01:47,normal,PetroMax
+SMP-00145,BAT-0013,diesel,2026-03-25 05:32:52,normal,NordFuel
+SMP-00146,BAT-0065,diesel,2026-02-15 15:29:06,normal,ChemTrans
+SMP-00147,BAT-0154,kerosene,2026-03-06 11:08:49,normal,NordFuel
+SMP-00148,BAT-0044,lubricant_oil,2026-01-18 22:04:37,normal,Orlenex
+SMP-00149,BAT-0150,lubricant_oil,2026-03-02 14:13:48,normal,NordFuel
+SMP-00150,BAT-0015,crude_oil,2026-02-14 05:21:37,normal,NordFuel
+SMP-00151,BAT-0080,diesel,2026-01-11 07:19:39,normal,ChemTrans
+SMP-00152,BAT-0188,crude_oil,2026-02-27 14:05:02,normal,PetroMax
+SMP-00153,BAT-0160,lubricant_oil,2026-03-10 08:48:38,normal,PetroMax
+SMP-00154,BAT-0020,crude_oil,2026-03-30 04:17:19,normal,NordFuel
+SMP-00155,BAT-0030,kerosene,2026-02-09 04:39:02,urgent,Baltic Energy
+SMP-00156,BAT-0157,crude_oil,2026-03-26 01:56:50,high,FuelCore
+SMP-00157,BAT-0165,kerosene,2026-01-15 18:23:23,high,ChemTrans
+SMP-00158,BAT-0021,kerosene,2026-02-13 11:02:06,high,Orlenex
+SMP-00159,BAT-0172,kerosene,2026-02-03 10:14:52,normal,PetroMax
+SMP-00160,BAT-0096,crude_oil,2026-01-05 18:40:14,high,Orlenex
+SMP-00161,BAT-0142,kerosene,2026-03-23 18:34:59,normal,ChemTrans
+SMP-00162,BAT-0035,diesel,2026-02-10 09:45:59,normal,FuelCore
+SMP-00163,BAT-0195,gasoline,2026-02-24 22:12:28,normal,ChemTrans
+SMP-00164,BAT-0074,gasoline,2026-01-15 13:12:10,high,FuelCore
+SMP-00165,BAT-0178,crude_oil,2026-02-07 09:09:07,normal,FuelCore
+SMP-00166,BAT-0110,gasoline,2026-02-24 08:58:07,normal,NordFuel
+SMP-00167,BAT-0182,gasoline,2026-02-21 08:15:33,normal,NordFuel
+SMP-00168,BAT-0003,crude_oil,2026-03-07 06:44:22,normal,NordFuel
+SMP-00169,BAT-0137,crude_oil,2026-03-03 04:51:35,normal,FuelCore
+SMP-00170,BAT-0162,kerosene,2026-02-12 09:01:17,normal,Orlenex
+SMP-00171,BAT-0170,crude_oil,2026-02-16 08:28:16,normal,NordFuel
+SMP-00172,BAT-0055,kerosene,2026-03-30 06:15:58,normal,ChemTrans
+SMP-00173,BAT-0065,crude_oil,2026-01-20 12:00:58,high,Orlenex
+SMP-00174,BAT-0123,kerosene,2026-02-13 13:45:33,normal,Baltic Energy
+SMP-00175,BAT-0162,crude_oil,2026-03-21 05:35:38,normal,Orlenex
+SMP-00176,BAT-0057,kerosene,2026-01-23 20:00:59,normal,Baltic Energy
+SMP-00177,BAT-0140,lubricant_oil,2026-01-18 05:05:57,normal,Orlenex
+SMP-00178,BAT-0041,gasoline,2026-02-28 18:48:32,high,PetroMax
+SMP-00179,BAT-0038,crude_oil,2026-01-17 11:36:12,normal,NordFuel
+SMP-00180,BAT-0028,crude_oil,2026-01-20 23:30:22,normal,ChemTrans
+SMP-00181,BAT-0090,lubricant_oil,2026-03-20 10:54:10,high,FuelCore
+SMP-00182,BAT-0065,gasoline,2026-03-25 08:14:26,normal,ChemTrans
+SMP-00183,BAT-0192,diesel,2026-02-13 16:38:29,high,NordFuel
+SMP-00184,BAT-0103,lubricant_oil,2026-03-06 00:59:56,normal,FuelCore
+SMP-00185,BAT-0200,kerosene,2026-02-04 14:50:49,high,Orlenex
+SMP-00186,BAT-0144,crude_oil,2026-02-19 04:28:08,normal,PetroMax
+SMP-00187,BAT-0133,lubricant_oil,2026-01-02 06:39:24,high,Baltic Energy
+SMP-00188,BAT-0053,diesel,2026-01-21 00:28:49,high,ChemTrans
+SMP-00189,BAT-0109,kerosene,2026-02-22 20:04:50,normal,Baltic Energy
+SMP-00190,BAT-0061,gasoline,2026-02-16 02:18:51,urgent,Baltic Energy
+SMP-00191,BAT-0143,kerosene,2026-03-25 11:20:38,normal,NordFuel
+SMP-00192,BAT-0016,diesel,2026-03-21 08:20:00,normal,FuelCore
+SMP-00193,BAT-0021,kerosene,2026-03-01 21:56:24,normal,FuelCore
+SMP-00194,BAT-0192,lubricant_oil,2026-02-20 21:52:05,urgent,Orlenex
+SMP-00195,BAT-0064,gasoline,2026-02-13 08:38:19,normal,NordFuel
+SMP-00196,BAT-0164,lubricant_oil,2026-01-31 09:33:47,urgent,Orlenex
+SMP-00197,BAT-0060,crude_oil,2026-02-23 13:25:37,normal,Orlenex
+SMP-00198,BAT-0049,gasoline,2026-01-03 05:11:40,normal,ChemTrans
+SMP-00199,BAT-0015,gasoline,2026-03-17 15:24:08,normal,ChemTrans
+SMP-00200,BAT-0054,kerosene,2026-02-08 02:43:19,high,Baltic Energy
+SMP-00201,BAT-0150,crude_oil,2026-02-08 18:18:00,high,PetroMax
+SMP-00202,BAT-0188,diesel,2026-01-03 09:45:20,high,Baltic Energy
+SMP-00203,BAT-0139,gasoline,2026-02-14 10:04:50,normal,FuelCore
+SMP-00204,BAT-0157,gasoline,2026-02-01 15:42:45,normal,Baltic Energy
+SMP-00205,BAT-0004,diesel,2026-03-06 00:00:24,normal,PetroMax
+SMP-00206,BAT-0050,lubricant_oil,2026-03-06 02:37:59,normal,FuelCore
+SMP-00207,BAT-0196,kerosene,2026-03-22 13:04:50,high,ChemTrans
+SMP-00208,BAT-0077,diesel,2026-01-22 04:34:24,high,PetroMax
+SMP-00209,BAT-0124,diesel,2026-02-17 17:45:59,high,FuelCore
+SMP-00210,BAT-0200,kerosene,2026-01-06 14:07:38,normal,PetroMax
+SMP-00211,BAT-0147,crude_oil,2026-02-23 13:17:15,normal,PetroMax
+SMP-00212,BAT-0168,crude_oil,2026-03-17 01:29:14,normal,Baltic Energy
+SMP-00213,BAT-0160,diesel,2026-03-09 19:37:59,high,PetroMax
+SMP-00214,BAT-0099,diesel,2026-02-07 07:05:53,normal,FuelCore
+SMP-00215,BAT-0071,crude_oil,2026-03-03 02:12:06,normal,Orlenex
+SMP-00216,BAT-0198,diesel,2026-03-06 01:07:50,urgent,NordFuel
+SMP-00217,BAT-0196,lubricant_oil,2026-03-02 05:35:22,normal,ChemTrans
+SMP-00218,BAT-0070,kerosene,2026-01-22 22:35:20,high,NordFuel
+SMP-00219,BAT-0135,crude_oil,2026-02-20 21:12:01,normal,Orlenex
+SMP-00220,BAT-0046,kerosene,2026-02-27 15:32:05,high,NordFuel
+SMP-00221,BAT-0157,diesel,2026-02-07 02:23:06,normal,PetroMax
+SMP-00222,BAT-0140,crude_oil,2026-03-01 08:42:18,high,NordFuel
+SMP-00223,BAT-0046,diesel,2026-03-07 14:05:03,normal,FuelCore
+SMP-00224,BAT-0106,lubricant_oil,2026-01-21 16:58:30,high,ChemTrans
+SMP-00225,BAT-0050,crude_oil,2026-01-12 19:26:33,normal,FuelCore
+SMP-00226,BAT-0123,kerosene,2026-03-19 17:44:14,normal,NordFuel
+SMP-00227,BAT-0091,crude_oil,2026-01-15 19:54:20,normal,PetroMax
+SMP-00228,BAT-0124,lubricant_oil,2026-01-16 07:01:38,normal,
+SMP-00229,BAT-0195,gasoline,2026-03-04 08:37:49,high,Baltic Energy
+SMP-00230,BAT-0147,diesel,2026-01-17 23:05:58,normal,ChemTrans
+SMP-00231,BAT-0021,kerosene,2026-02-25 11:02:41,normal,FuelCore
+SMP-00232,BAT-0117,kerosene,2026-01-04 06:31:13,normal,PetroMax
+SMP-00233,BAT-0103,lubricant_oil,2026-02-10 11:23:22,normal,NordFuel
+SMP-00234,BAT-0143,crude_oil,2026-03-22 03:27:09,normal,Baltic Energy
+SMP-00235,BAT-0078,kerosene,2026-03-12 00:34:29,urgent,Baltic Energy
+SMP-00236,BAT-0061,kerosene,2026-03-10 12:17:44,normal,FuelCore
+SMP-00237,BAT-0003,crude_oil,2026-03-05 06:51:23,normal,FuelCore
+SMP-00238,BAT-0146,kerosene,2026-03-10 18:29:43,normal,ChemTrans
+SMP-00239,BAT-0020,lubricant_oil,2026-03-19 19:42:13,normal,ChemTrans
+SMP-00240,BAT-0149,diesel,2026-02-25 22:51:37,normal,Baltic Energy
+SMP-00241,BAT-0125,diesel,2026-03-19 22:40:18,normal,PetroMax
+SMP-00242,BAT-0119,kerosene,2026-02-16 13:42:03,normal,FuelCore
+SMP-00243,BAT-0137,gasoline,2026-03-24 07:13:12,normal,FuelCore
+SMP-00244,BAT-0141,crude_oil,2026-03-07 15:44:31,normal,PetroMax
+SMP-00245,BAT-0048,crude_oil,2026-03-09 20:59:25,normal,Baltic Energy
+SMP-00246,BAT-0139,kerosene,2026-01-22 12:52:38,normal,PetroMax
+SMP-00247,BAT-0123,kerosene,2026-02-09 13:11:05,high,PetroMax
+SMP-00248,BAT-0195,gasoline,2026-03-05 05:27:57,normal,ChemTrans
+SMP-00249,BAT-0126,kerosene,2026-01-07 10:47:00,high,FuelCore
+SMP-00250,BAT-0138,diesel,2026-03-14 06:46:30,normal,PetroMax
+SMP-00251,BAT-0158,diesel,2026-01-07 11:03:25,high,Orlenex
+SMP-00252,BAT-0005,kerosene,2026-01-09 04:05:50,normal,NordFuel
+SMP-00253,BAT-0161,gasoline,2026-02-04 02:33:27,normal,ChemTrans
+SMP-00254,BAT-0128,diesel,2026-01-16 20:16:00,high,PetroMax
+SMP-00255,BAT-0108,diesel,2026-03-14 20:50:17,high,Baltic Energy
+SMP-00256,BAT-0009,lubricant_oil,2026-01-07 02:59:54,normal,PetroMax
+SMP-00257,BAT-0189,diesel,2026-01-25 09:29:20,normal,ChemTrans
+SMP-00258,BAT-0166,crude_oil,2026-01-02 21:07:11,normal,Baltic Energy
+SMP-00259,BAT-0054,crude_oil,2026-03-02 13:45:55,low,FuelCore
+SMP-00260,BAT-0083,gasoline,2026-03-29 12:20:08,normal,FuelCore
+SMP-00261,BAT-0049,kerosene,2026-01-09 19:26:38,normal,NordFuel
+SMP-00262,BAT-0189,crude_oil,2026-01-29 15:17:00,normal,PetroMax
+SMP-00263,BAT-0043,lubricant_oil,2026-01-16 22:40:03,high,Baltic Energy
+SMP-00264,BAT-0104,kerosene,2026-03-16 22:46:37,normal,Orlenex
+SMP-00265,BAT-0188,kerosene,2026-03-29 17:33:30,normal,FuelCore
+SMP-00266,BAT-0126,gasoline,2026-02-28 21:29:32,normal,PetroMax
+SMP-00267,BAT-0054,gasoline,2026-02-16 09:55:43,urgent,ChemTrans
+SMP-00268,BAT-0058,crude_oil,2026-03-19 03:40:30,normal,Baltic Energy
+SMP-00269,BAT-0092,diesel,2026-01-06 11:14:19,normal,Orlenex
+SMP-00270,BAT-0149,gasoline,2026-03-22 06:27:45,normal,NordFuel
+SMP-00271,BAT-0183,lubricant_oil,2026-03-10 12:23:44,high,PetroMax
+SMP-00272,BAT-0109,crude_oil,2026-01-08 21:08:10,normal,Orlenex
+SMP-00273,BAT-0136,diesel,2026-03-11 19:57:43,normal,Baltic Energy
+SMP-00274,BAT-0029,lubricant_oil,2026-01-14 12:41:55,normal,Baltic Energy
+SMP-00275,BAT-0046,crude_oil,2026-03-07 18:54:14,normal,PetroMax
+SMP-00276,BAT-0092,kerosene,2026-03-07 01:28:12,normal,Orlenex
+SMP-00277,BAT-0120,diesel,2026-01-29 20:03:04,high,Orlenex
+SMP-00278,BAT-0111,diesel,2026-01-31 16:05:01,high,
+SMP-00279,BAT-0190,lubricant_oil,2026-01-03 22:40:52,high,FuelCore
+SMP-00280,BAT-0069,crude_oil,2026-03-09 21:42:02,normal,PetroMax
+SMP-00281,BAT-0103,diesel,2026-03-02 23:21:32,high,PetroMax
+SMP-00282,BAT-0047,crude_oil,2026-03-03 06:58:56,high,NordFuel
+SMP-00283,BAT-0053,kerosene,2026-01-27 06:00:11,high,FuelCore
+SMP-00284,BAT-0169,lubricant_oil,2026-01-18 10:04:31,normal,PetroMax
+SMP-00285,BAT-0061,lubricant_oil,2026-01-13 04:55:32,high,Baltic Energy
+SMP-00286,BAT-0093,kerosene,2026-03-11 19:38:05,normal,Baltic Energy
+SMP-00287,BAT-0003,kerosene,2026-03-31 10:55:27,normal,PetroMax
+SMP-00288,BAT-0042,gasoline,2026-02-19 11:50:41,normal,Orlenex
+SMP-00289,BAT-0064,lubricant_oil,2026-03-11 14:43:28,urgent,FuelCore
+SMP-00290,BAT-0157,diesel,2026-03-30 09:06:05,normal,Orlenex
+SMP-00291,BAT-0187,diesel,2026-02-10 22:46:54,normal,NordFuel
+SMP-00292,BAT-0121,gasoline,2026-03-01 04:57:17,urgent,ChemTrans
+SMP-00293,BAT-0030,gasoline,2026-01-05 14:54:19,urgent,Orlenex
+SMP-00294,BAT-0121,gasoline,2026-01-17 05:06:38,high,Orlenex
+SMP-00295,BAT-0170,lubricant_oil,2026-01-21 22:55:08,normal,PetroMax
+SMP-00296,BAT-0123,kerosene,2026-03-03 08:10:38,urgent,ChemTrans
+SMP-00297,BAT-0098,crude_oil,2026-02-09 01:24:27,normal,NordFuel
+SMP-00298,BAT-0048,kerosene,2026-03-03 13:36:19,normal,PetroMax
+SMP-00299,BAT-0176,gasoline,2026-03-24 00:55:32,normal,Orlenex
+SMP-00300,BAT-0101,crude_oil,2026-01-09 10:04:51,normal,FuelCore
+SMP-00301,BAT-0186,kerosene,2026-01-30 17:34:30,normal,ChemTrans
+SMP-00302,BAT-0138,diesel,2026-01-09 16:36:45,normal,Orlenex
+SMP-00303,BAT-0010,kerosene,2026-02-09 03:19:21,normal,ChemTrans
+SMP-00304,BAT-0179,kerosene,2026-01-03 08:29:01,normal,FuelCore
+SMP-00305,BAT-0189,gasoline,2026-03-19 14:45:02,normal,NordFuel
+SMP-00306,BAT-0092,diesel,2026-01-18 07:06:53,high,ChemTrans
+SMP-00307,BAT-0194,crude_oil,2026-01-11 14:44:45,high,ChemTrans
+SMP-00308,BAT-0044,crude_oil,2026-01-27 03:51:40,normal,Orlenex
+SMP-00309,BAT-0015,lubricant_oil,2026-01-30 01:05:16,normal,FuelCore
+SMP-00310,BAT-0104,diesel,2026-03-27 20:49:11,normal,PetroMax
+SMP-00311,BAT-0130,crude_oil,2026-03-13 09:39:05,normal,Baltic Energy
+SMP-00312,BAT-0036,kerosene,2026-02-20 18:54:39,high,PetroMax
+SMP-00313,BAT-0151,lubricant_oil,2026-02-20 17:13:46,high,Baltic Energy
+SMP-00314,BAT-0031,lubricant_oil,2026-03-25 02:02:39,normal,PetroMax
+SMP-00315,BAT-0141,gasoline,2026-01-07 21:26:12,high,Orlenex
+SMP-00316,BAT-0060,kerosene,2026-02-03 05:55:20,normal,FuelCore
+SMP-00317,BAT-0129,crude_oil,2026-01-13 00:16:48,high,ChemTrans
+SMP-00318,BAT-0074,diesel,2026-01-19 01:38:58,normal,PetroMax
+SMP-00319,BAT-0131,lubricant_oil,2026-02-07 17:13:42,urgent,Baltic Energy
+SMP-00320,BAT-0037,gasoline,2026-02-22 19:18:57,urgent,NordFuel
+SMP-00321,BAT-0055,lubricant_oil,2026-03-23 22:56:10,normal,PetroMax
+SMP-00322,BAT-0118,lubricant_oil,2026-02-02 05:21:39,normal,FuelCore
+SMP-00323,BAT-0032,gasoline,2026-03-21 05:55:03,normal,ChemTrans
+SMP-00324,BAT-0060,kerosene,2026-02-05 13:50:57,normal,Orlenex
+SMP-00325,BAT-0191,crude_oil,2026-01-13 16:56:07,normal,ChemTrans
+SMP-00326,BAT-0013,gasoline,2026-03-31 12:00:26,normal,Orlenex
+SMP-00327,BAT-0111,crude_oil,2026-02-27 20:41:48,high,Baltic Energy
+SMP-00328,BAT-0161,kerosene,2026-01-07 17:18:08,normal,PetroMax
+SMP-00329,BAT-0167,crude_oil,2026-02-14 10:04:31,normal,ChemTrans
+SMP-00330,BAT-0003,lubricant_oil,2026-02-27 06:30:14,high,NordFuel
+SMP-00331,BAT-0158,gasoline,2026-02-10 23:37:50,normal,PetroMax
+SMP-00332,BAT-0003,crude_oil,2026-02-05 01:56:10,normal,PetroMax
+SMP-00333,BAT-0087,diesel,2026-01-30 22:52:12,normal,Baltic Energy
+SMP-00334,BAT-0084,diesel,2026-01-06 12:06:08,normal,Baltic Energy
+SMP-00335,BAT-0167,crude_oil,2026-01-21 10:48:36,normal,NordFuel
+SMP-00336,BAT-0007,diesel,2026-02-13 05:12:31,normal,FuelCore
+SMP-00337,BAT-0193,lubricant_oil,2026-03-30 22:00:19,normal,Baltic Energy
+SMP-00338,BAT-0088,crude_oil,2026-01-31 17:31:02,high,Orlenex
+SMP-00339,BAT-0036,diesel,2026-02-02 09:32:22,normal,ChemTrans
+SMP-00340,BAT-0018,kerosene,2026-01-28 21:20:34,normal,Baltic Energy
+SMP-00341,BAT-0034,diesel,2026-01-31 09:47:11,normal,FuelCore
+SMP-00342,BAT-0166,kerosene,2026-02-04 00:03:36,high,FuelCore
+SMP-00343,BAT-0071,lubricant_oil,2026-01-29 16:09:07,high,PetroMax
+SMP-00344,BAT-0098,gasoline,2026-03-14 18:12:24,normal,NordFuel
+SMP-00345,BAT-0044,crude_oil,2026-03-01 06:23:09,normal,Baltic Energy
+SMP-00346,BAT-0052,crude_oil,2026-01-02 21:22:20,normal,PetroMax
+SMP-00347,BAT-0057,crude_oil,2026-03-06 05:09:42,high,FuelCore
+SMP-00348,BAT-0171,kerosene,2026-01-07 21:19:04,normal,ChemTrans
+SMP-00349,BAT-0128,gasoline,2026-01-20 22:43:17,normal,NordFuel
+SMP-00350,BAT-0193,crude_oil,2026-01-23 13:37:55,high,Baltic Energy
+SMP-00351,BAT-0043,diesel,2026-01-25 02:42:59,normal,ChemTrans
+SMP-00352,BAT-0142,diesel,2026-01-26 07:31:59,normal,
+SMP-00353,BAT-0019,kerosene,2026-03-28 06:11:54,normal,PetroMax
+SMP-00354,BAT-0162,crude_oil,2026-03-10 01:13:34,high,NordFuel
+SMP-00355,BAT-0098,lubricant_oil,2026-01-31 05:38:33,high,FuelCore
+SMP-00356,BAT-0125,diesel,2026-02-19 03:10:29,urgent,Orlenex
+SMP-00357,BAT-0173,crude_oil,2026-01-02 06:09:06,normal,PetroMax
+SMP-00358,BAT-0032,lubricant_oil,2026-01-28 11:12:23,urgent,NordFuel
+SMP-00359,BAT-0169,crude_oil,2026-03-13 14:59:28,normal,ChemTrans
+SMP-00360,BAT-0042,gasoline,2026-03-29 23:19:24,normal,Baltic Energy
+SMP-00361,BAT-0184,kerosene,2026-03-05 19:44:35,normal,ChemTrans
+SMP-00362,BAT-0100,kerosene,2026-02-01 08:49:19,high,FuelCore
+SMP-00363,BAT-0180,crude_oil,2026-02-28 11:29:32,normal,ChemTrans
+SMP-00364,BAT-0194,kerosene,2026-02-08 07:14:35,normal,FuelCore
+SMP-00365,BAT-0075,diesel,2026-01-21 16:47:27,normal,FuelCore
+SMP-00366,BAT-0063,crude_oil,2026-01-12 20:49:47,normal,Orlenex
+SMP-00367,BAT-0178,crude_oil,2026-03-19 10:57:18,normal,Orlenex
+SMP-00368,BAT-0047,lubricant_oil,2026-03-09 19:58:13,normal,ChemTrans
+SMP-00369,BAT-0169,lubricant_oil,2026-02-13 12:44:21,normal,Orlenex
+SMP-00370,BAT-0103,kerosene,2026-01-09 09:59:45,urgent,FuelCore
+SMP-00371,BAT-0032,lubricant_oil,2026-01-12 00:17:44,high,Orlenex
+SMP-00372,BAT-0025,lubricant_oil,2026-02-04 04:59:47,high,Baltic Energy
+SMP-00373,BAT-0033,diesel,2026-02-07 02:40:10,normal,Baltic Energy
+SMP-00374,BAT-0198,gasoline,2026-03-24 09:33:54,normal,PetroMax
+SMP-00375,BAT-0179,crude_oil,2026-02-09 16:49:01,normal,NordFuel
+SMP-00376,BAT-0139,crude_oil,2026-01-29 11:53:59,normal,Baltic Energy
+SMP-00377,BAT-0022,lubricant_oil,2026-02-20 06:26:57,high,Orlenex
+SMP-00378,BAT-0029,diesel,2026-01-28 23:51:52,normal,Orlenex
+SMP-00379,BAT-0029,crude_oil,2026-03-19 07:09:18,normal,NordFuel
+SMP-00380,BAT-0180,lubricant_oil,2026-03-01 15:58:02,normal,ChemTrans
+SMP-00381,BAT-0072,gasoline,2026-03-11 10:06:52,normal,Baltic Energy
+SMP-00382,BAT-0142,diesel,2026-02-02 11:46:45,normal,Baltic Energy
+SMP-00383,BAT-0195,diesel,2026-02-22 03:16:45,high,PetroMax
+SMP-00384,BAT-0012,lubricant_oil,2026-01-07 05:39:31,high,FuelCore
+SMP-00385,BAT-0117,lubricant_oil,2026-03-11 01:11:11,high,Baltic Energy
+SMP-00386,BAT-0095,gasoline,2026-01-09 09:58:39,urgent,
+SMP-00387,BAT-0028,kerosene,2026-03-05 19:31:19,normal,FuelCore
+SMP-00388,BAT-0049,lubricant_oil,2026-02-17 22:59:26,urgent,NordFuel
+SMP-00389,BAT-0012,diesel,2026-01-25 10:40:51,rush,Baltic Energy
+SMP-00390,BAT-0140,crude_oil,2026-01-03 09:25:04,high,PetroMax
+SMP-00391,BAT-0012,lubricant_oil,2026-01-16 00:05:43,normal,ChemTrans
+SMP-00392,BAT-0038,gasoline,2026-01-15 16:21:10,normal,FuelCore
+SMP-00393,BAT-0063,kerosene,2026-02-10 23:32:51,normal,ChemTrans
+SMP-00394,BAT-0093,lubricant_oil,2026-02-16 08:19:42,urgent,PetroMax
+SMP-00395,BAT-0179,kerosene,2026-02-06 10:05:13,normal,PetroMax
+SMP-00396,BAT-0179,gasoline,2026-02-15 23:36:33,normal,
+SMP-00397,BAT-0109,diesel,2026-01-27 17:24:15,urgent,ChemTrans
+SMP-00398,BAT-0093,lubricant_oil,2026-03-17 22:43:44,high,PetroMax
+SMP-00399,BAT-0092,gasoline,2026-02-08 23:43:30,normal,Baltic Energy
+SMP-00400,BAT-0039,kerosene,2026-01-08 23:30:26,high,PetroMax
+SMP-00401,BAT-0111,crude_oil,2026-03-28 19:26:04,high,FuelCore
+SMP-00402,BAT-0122,gasoline,2026-03-16 10:15:35,high,FuelCore
+SMP-00403,BAT-0175,crude_oil,2026-03-02 14:08:05,urgent,PetroMax
+SMP-00404,BAT-0088,lubricant_oil,2026-02-17 13:08:58,normal,FuelCore
+SMP-00405,BAT-0109,gasoline,2026-01-25 19:22:07,normal,PetroMax
+SMP-00406,BAT-0043,diesel,2026-02-04 05:52:21,urgent,Orlenex
+SMP-00407,BAT-0082,crude_oil,2026-03-19 05:31:58,urgent,Orlenex
+SMP-00408,BAT-0180,kerosene,2026-03-05 08:04:25,urgent,Orlenex
+SMP-00409,BAT-0112,gasoline,2026-03-10 11:59:39,normal,PetroMax
+SMP-00410,BAT-0098,crude_oil,2026-01-20 07:41:18,high,PetroMax
+SMP-00411,BAT-0082,gasoline,2026-01-17 21:05:08,urgent,Orlenex
+SMP-00412,BAT-0026,diesel,2026-02-19 07:00:14,normal,ChemTrans
+SMP-00413,BAT-0163,gasoline,2026-01-19 10:42:18,normal,NordFuel
+SMP-00414,BAT-0118,lubricant_oil,2026-01-13 05:52:30,normal,Baltic Energy
+SMP-00415,BAT-0088,gasoline,2026-02-17 07:35:39,urgent,ChemTrans
+SMP-00416,BAT-0022,diesel,2026-01-27 07:31:52,normal,NordFuel
+SMP-00417,BAT-0156,kerosene,2026-02-12 00:22:18,normal,Baltic Energy
+SMP-00418,BAT-0110,diesel,2026-02-05 01:36:18,normal,NordFuel
+SMP-00419,BAT-0020,lubricant_oil,2026-03-29 00:03:28,normal,FuelCore
+SMP-00420,BAT-0136,crude_oil,2026-02-03 02:10:31,normal,PetroMax
+SMP-00421,BAT-0049,gasoline,2026-03-21 13:45:42,urgent,PetroMax
+SMP-00422,BAT-0033,gasoline,2026-03-26 00:21:38,normal,ChemTrans
+SMP-00423,BAT-0169,diesel,2026-03-09 19:23:09,normal,Orlenex
+SMP-00424,BAT-0099,kerosene,2026-03-26 14:15:27,normal,NordFuel
+SMP-00425,BAT-0091,gasoline,2026-01-12 19:43:12,urgent,
+SMP-00426,BAT-0064,crude_oil,2026-01-22 15:39:28,normal,PetroMax
+SMP-00427,BAT-0177,diesel,2026-01-17 20:40:14,normal,PetroMax
+SMP-00428,BAT-0146,gasoline,2026-03-23 10:31:39,normal,ChemTrans
+SMP-00429,BAT-0153,kerosene,2026-01-12 06:45:08,normal,ChemTrans
+SMP-00430,BAT-0164,crude_oil,2026-01-27 22:17:20,high,FuelCore
+SMP-00431,BAT-0143,diesel,2026-01-30 19:32:43,normal,PetroMax
+SMP-00432,BAT-0183,gasoline,2026-01-15 04:23:06,urgent,NordFuel
+SMP-00433,BAT-0149,diesel,2026-03-08 16:15:13,high,Baltic Energy
+SMP-00434,BAT-0119,crude_oil,2026-03-30 22:24:53,normal,Orlenex
+SMP-00435,BAT-0124,gasoline,2026-03-26 05:59:52,normal,FuelCore
+SMP-00436,BAT-0125,lubricant_oil,2026-03-09 02:37:52,normal,PetroMax
+SMP-00437,BAT-0158,crude_oil,2026-02-12 07:27:25,normal,PetroMax
+SMP-00438,BAT-0167,lubricant_oil,2026-02-13 11:42:43,normal,Baltic Energy
+SMP-00439,BAT-0018,kerosene,2026-02-06 21:21:41,urgent,ChemTrans
+SMP-00440,BAT-0028,kerosene,2026-03-08 06:56:08,normal,NordFuel
+SMP-00441,BAT-0045,gasoline,2026-01-11 18:52:05,high,Orlenex
+SMP-00442,BAT-0009,diesel,2026-03-29 01:31:08,normal,Orlenex
+SMP-00443,BAT-0021,diesel,2026-03-18 07:05:40,normal,PetroMax
+SMP-00444,BAT-0008,crude_oil,2026-02-03 03:42:09,normal,NordFuel
+SMP-00445,BAT-0167,gasoline,2026-02-12 05:30:14,normal,NordFuel
+SMP-00446,BAT-0141,diesel,2026-01-12 13:19:42,normal,ChemTrans
+SMP-00447,BAT-0075,diesel,2026-03-01 04:22:15,normal,FuelCore
+SMP-00448,BAT-0134,diesel,2026-01-30 22:33:35,high,NordFuel
+SMP-00449,BAT-0099,kerosene,2026-01-05 15:29:44,normal,Orlenex
+SMP-00450,BAT-0112,kerosene,2026-03-18 07:37:10,high,FuelCore
+SMP-00451,BAT-0072,gasoline,2026-01-09 15:18:55,urgent,ChemTrans
+SMP-00452,BAT-0123,lubricant_oil,2026-01-22 11:36:35,normal,ChemTrans
+SMP-00453,BAT-0142,diesel,2026-01-07 05:42:15,urgent,Baltic Energy
+SMP-00454,BAT-0156,gasoline,2026-02-02 20:34:24,urgent,FuelCore
+SMP-00455,BAT-0056,kerosene,2026-03-22 23:44:01,normal,FuelCore
+SMP-00456,BAT-0069,diesel,2026-03-23 12:02:31,normal,NordFuel
+SMP-00457,BAT-0138,diesel,2026-03-17 17:15:20,urgent,FuelCore
+SMP-00458,BAT-0183,kerosene,2026-03-14 10:58:30,normal,PetroMax
+SMP-00459,BAT-0158,crude_oil,2026-03-12 10:48:01,normal,FuelCore
+SMP-00460,BAT-0088,crude_oil,2026-02-25 02:31:16,normal,ChemTrans
+SMP-00461,BAT-0156,crude_oil,2026-01-23 19:50:27,high,NordFuel
+SMP-00462,BAT-0127,gasoline,2026-01-09 18:24:26,high,Baltic Energy
+SMP-00463,BAT-0111,crude_oil,2026-03-10 19:00:38,high,Baltic Energy
+SMP-00464,BAT-0177,gasoline,2026-03-01 21:16:29,normal,ChemTrans
+SMP-00465,BAT-0057,crude_oil,2026-03-27 20:38:04,high,Baltic Energy
+SMP-00466,BAT-0106,kerosene,2026-03-20 21:10:40,normal,Orlenex
+SMP-00467,BAT-0085,diesel,2026-03-01 01:39:42,normal,FuelCore
+SMP-00468,BAT-0006,lubricant_oil,2026-01-11 06:53:26,normal,Orlenex
+SMP-00469,BAT-0004,lubricant_oil,2026-03-01 01:27:12,urgent,PetroMax
+SMP-00470,BAT-0124,gasoline,2026-03-30 11:00:52,high,ChemTrans
+SMP-00471,BAT-0144,diesel,2026-01-21 11:56:01,high,Orlenex
+SMP-00472,BAT-0119,kerosene,2026-02-20 06:42:40,normal,FuelCore
+SMP-00473,BAT-0192,lubricant_oil,2026-02-10 22:21:14,normal,Baltic Energy
+SMP-00474,BAT-0043,lubricant_oil,2026-03-11 18:15:37,high,PetroMax
+SMP-00475,BAT-0095,lubricant_oil,2026-03-16 19:12:48,normal,Baltic Energy
+SMP-00476,BAT-0060,diesel,2026-01-10 04:50:00,urgent,ChemTrans
+SMP-00477,BAT-0136,crude_oil,2026-03-28 02:12:16,normal,NordFuel
+SMP-00478,BAT-0051,kerosene,2026-02-05 09:10:15,normal,PetroMax
+SMP-00479,BAT-0156,kerosene,2026-02-17 22:28:58,normal,FuelCore
+SMP-00480,BAT-0158,crude_oil,2026-02-02 15:09:56,high,Baltic Energy
+SMP-00481,BAT-0179,crude_oil,2026-02-25 07:18:59,urgent,PetroMax
+SMP-00482,BAT-0036,lubricant_oil,2026-01-31 23:15:49,normal,NordFuel
+SMP-00483,BAT-0088,lubricant_oil,2026-02-23 21:20:50,high,
+SMP-00484,BAT-0122,gasoline,2026-02-03 00:30:08,normal,PetroMax
+SMP-00485,BAT-0087,kerosene,2026-03-08 05:08:58,normal,PetroMax
+SMP-00486,BAT-0170,gasoline,2026-03-18 21:29:59,urgent,PetroMax
+SMP-00487,BAT-0199,gasoline,2026-01-01 19:31:19,normal,Baltic Energy
+SMP-00488,BAT-0073,kerosene,2026-02-28 06:58:06,normal,PetroMax
+SMP-00489,BAT-0112,crude_oil,2026-02-03 07:17:39,normal,NordFuel
+SMP-00490,BAT-0172,kerosene,2026-02-11 08:23:46,high,Baltic Energy
+SMP-00491,BAT-0087,lubricant_oil,2026-01-26 08:48:09,normal,ChemTrans
+SMP-00492,BAT-0077,crude_oil,2026-02-28 04:15:55,normal,FuelCore
+SMP-00493,BAT-0098,lubricant_oil,2026-03-12 18:18:08,normal,FuelCore
+SMP-00494,BAT-0012,lubricant_oil,2026-02-09 00:58:11,urgent,FuelCore
+SMP-00495,BAT-0143,crude_oil,2026-02-03 15:07:59,normal,Baltic Energy
+SMP-00496,BAT-0111,kerosene,2026-03-16 14:26:23,normal,Baltic Energy
+SMP-00497,BAT-0141,kerosene,2026-02-04 12:16:36,high,Orlenex
+SMP-00498,BAT-0041,diesel,2026-02-09 04:11:39,normal,ChemTrans
+SMP-00499,BAT-0142,lubricant_oil,2026-03-26 03:57:25,normal,NordFuel
+SMP-00500,BAT-0063,kerosene,2026-03-12 10:29:23,urgent,PetroMax
+SMP-00501,BAT-0186,crude_oil,2026-02-05 14:43:15,normal,ChemTrans
+SMP-00502,BAT-0088,gasoline,2026-03-09 05:56:19,normal,Orlenex
+SMP-00503,BAT-0040,diesel,2026-01-15 13:25:50,normal,Orlenex
+SMP-00504,BAT-0097,kerosene,2026-03-05 06:49:36,normal,ChemTrans
+SMP-00505,BAT-0004,lubricant_oil,2026-03-29 12:48:19,normal,NordFuel
+SMP-00506,BAT-0046,crude_oil,2026-03-01 11:23:37,normal,Baltic Energy
+SMP-00507,BAT-0003,lubricant_oil,2026-02-12 01:24:11,high,PetroMax
+SMP-00508,BAT-0129,gasoline,2026-03-03 02:30:11,normal,NordFuel
+SMP-00509,BAT-0079,gasoline,2026-03-16 17:53:21,normal,PetroMax
+SMP-00510,BAT-0121,gasoline,2026-02-06 08:00:21,normal,Baltic Energy
+SMP-00511,BAT-0170,gasoline,2026-01-29 22:55:35,high,PetroMax
+SMP-00512,BAT-0200,kerosene,2026-03-09 02:41:32,urgent,FuelCore
+SMP-00513,BAT-0039,diesel,2026-02-27 14:21:10,normal,NordFuel
+SMP-00514,BAT-0086,diesel,2026-03-08 03:04:57,urgent,Baltic Energy
+SMP-00515,BAT-0145,crude_oil,2026-02-24 12:54:41,high,
+SMP-00516,BAT-0005,crude_oil,2026-01-23 04:49:25,normal,NordFuel
+SMP-00517,BAT-0059,diesel,2026-01-20 21:59:54,normal,Orlenex
+SMP-00518,BAT-0149,lubricant_oil,2026-01-13 03:35:25,normal,NordFuel
+SMP-00519,BAT-0167,gasoline,2026-01-23 14:26:41,urgent,PetroMax
+SMP-00520,BAT-0016,lubricant_oil,2026-03-20 05:40:53,normal,FuelCore
+SMP-00521,BAT-0009,diesel,2026-03-31 00:47:18,normal,ChemTrans
+SMP-00522,BAT-0139,gasoline,2026-03-01 21:48:50,high,PetroMax
+SMP-00523,BAT-0134,lubricant_oil,2026-02-26 08:53:48,urgent,Baltic Energy
+SMP-00524,BAT-0049,lubricant_oil,2026-02-09 17:14:56,normal,NordFuel
+SMP-00525,BAT-0059,kerosene,2026-03-22 22:13:18,normal,ChemTrans
+SMP-00526,BAT-0051,gasoline,2026-02-21 08:40:40,normal,NordFuel
+SMP-00527,BAT-0072,crude_oil,2026-02-09 06:06:05,normal,ChemTrans
+SMP-00528,BAT-0050,diesel,2026-03-23 08:07:39,normal,NordFuel
+SMP-00529,BAT-0139,lubricant_oil,2026-02-14 10:45:10,normal,FuelCore
+SMP-00530,BAT-0108,crude_oil,2026-03-04 06:47:14,normal,Baltic Energy
+SMP-00531,BAT-0152,crude_oil,2026-02-26 05:18:16,normal,NordFuel
+SMP-00532,BAT-0091,diesel,2026-01-28 04:36:01,normal,PetroMax
+SMP-00533,BAT-0164,kerosene,2026-01-31 17:09:59,normal,FuelCore
+SMP-00534,BAT-0144,gasoline,2026-03-15 19:24:11,normal,NordFuel
+SMP-00535,BAT-0158,lubricant_oil,2026-01-09 07:34:00,normal,NordFuel
+SMP-00536,BAT-0106,diesel,2026-03-24 15:45:40,normal,Orlenex
+SMP-00537,BAT-0149,diesel,2026-01-10 17:08:39,urgent,ChemTrans
+SMP-00538,BAT-0181,diesel,2026-01-07 12:36:38,high,PetroMax
+SMP-00539,BAT-0002,lubricant_oil,2026-01-06 11:25:52,high,Baltic Energy
+SMP-00540,BAT-0098,kerosene,2026-01-14 18:45:01,high,NordFuel
+SMP-00541,BAT-0016,gasoline,2026-01-10 14:30:30,low,ChemTrans
+SMP-00542,BAT-0147,diesel,2026-03-28 21:11:53,normal,NordFuel
+SMP-00543,BAT-0172,lubricant_oil,2026-01-07 16:32:28,normal,Baltic Energy
+SMP-00544,BAT-0165,diesel,2026-01-28 18:24:58,normal,Orlenex
+SMP-00545,BAT-0139,diesel,2026-03-04 13:28:50,normal,PetroMax
+SMP-00546,BAT-0019,diesel,2026-02-18 10:04:29,normal,FuelCore
+SMP-00547,BAT-0109,lubricant_oil,2026-03-11 06:49:18,high,FuelCore
+SMP-00548,BAT-0018,diesel,2026-02-22 11:09:36,normal,FuelCore
+SMP-00549,BAT-0196,crude_oil,2026-01-24 19:19:21,normal,Baltic Energy
+SMP-00550,BAT-0007,kerosene,2026-01-08 01:40:25,high,ChemTrans
+SMP-00551,BAT-0176,diesel,2026-01-01 21:45:06,normal,ChemTrans
+SMP-00552,BAT-0117,kerosene,2026-03-31 14:25:08,high,
+SMP-00553,BAT-0103,diesel,2026-03-23 21:39:26,normal,NordFuel
+SMP-00554,BAT-0096,gasoline,2026-01-22 01:31:22,normal,Orlenex
+SMP-00555,BAT-0007,diesel,2026-02-07 19:22:36,normal,NordFuel
+SMP-00556,BAT-0006,crude_oil,2026-03-31 16:09:20,high,PetroMax
+SMP-00557,BAT-0161,kerosene,2026-03-10 06:47:53,urgent,FuelCore
+SMP-00558,BAT-0089,gasoline,2026-01-09 14:05:19,high,PetroMax
+SMP-00559,BAT-0107,diesel,2026-02-05 19:00:53,high,NordFuel
+SMP-00560,BAT-0160,crude_oil,2026-03-13 15:50:17,normal,Baltic Energy
+SMP-00561,BAT-0030,crude_oil,2026-03-21 01:11:46,normal,PetroMax
+SMP-00562,BAT-0048,crude_oil,2026-03-12 01:39:14,urgent,PetroMax
+SMP-00563,BAT-0049,diesel,2026-03-24 17:25:09,normal,NordFuel
+SMP-00564,BAT-0021,kerosene,2026-01-02 11:57:34,urgent,FuelCore
+SMP-00565,BAT-0151,diesel,2026-01-05 11:29:49,high,Orlenex
+SMP-00566,BAT-0045,diesel,2026-02-27 21:38:37,urgent,NordFuel
+SMP-00567,BAT-0018,gasoline,2026-03-10 21:09:19,normal,Baltic Energy
+SMP-00568,BAT-0145,kerosene,2026-01-07 11:05:30,normal,Baltic Energy
+SMP-00569,BAT-0147,diesel,2026-03-11 02:00:14,normal,NordFuel
+SMP-00570,BAT-0122,diesel,2026-01-23 00:24:15,normal,Baltic Energy
+SMP-00571,BAT-0073,diesel,2026-03-19 02:29:10,normal,FuelCore
+SMP-00572,BAT-0117,gasoline,2026-01-17 03:35:13,normal,Baltic Energy
+SMP-00573,BAT-0073,gasoline,2026-02-25 05:58:58,high,PetroMax
+SMP-00574,BAT-0016,lubricant_oil,2026-02-10 18:10:21,normal,Orlenex
+SMP-00575,BAT-0005,lubricant_oil,2026-03-16 15:49:47,normal,PetroMax
+SMP-00576,BAT-0069,lubricant_oil,2026-02-06 16:11:00,normal,NordFuel
+SMP-00577,BAT-0189,gasoline,2026-03-23 04:52:00,high,NordFuel
+SMP-00578,BAT-0185,gasoline,2026-02-14 18:56:52,urgent,ChemTrans
+SMP-00579,BAT-0078,kerosene,2026-02-07 08:46:30,high,NordFuel
+SMP-00580,BAT-0031,crude_oil,2026-03-27 19:13:32,urgent,Orlenex
+SMP-00581,BAT-0185,kerosene,2026-01-21 00:19:19,high,PetroMax
+SMP-00582,BAT-0154,gasoline,2026-02-14 15:09:25,high,ChemTrans
+SMP-00583,BAT-0139,kerosene,2026-02-05 07:37:37,urgent,PetroMax
+SMP-00584,BAT-0147,diesel,2026-03-21 14:01:10,high,FuelCore
+SMP-00585,BAT-0090,kerosene,2026-03-09 02:41:32,high,PetroMax
+SMP-00586,BAT-0049,crude_oil,2026-01-02 21:47:43,normal,PetroMax
+SMP-00587,BAT-0109,lubricant_oil,2026-03-02 13:14:40,high,FuelCore
+SMP-00588,BAT-0056,lubricant_oil,2026-02-10 04:47:01,normal,FuelCore
+SMP-00589,BAT-0110,crude_oil,2026-03-09 00:22:37,normal,PetroMax
+SMP-00590,BAT-0007,kerosene,2026-02-18 12:06:11,normal,FuelCore
+SMP-00591,BAT-0103,lubricant_oil,2026-03-31 14:03:53,normal,NordFuel
+SMP-00592,BAT-0016,lubricant_oil,2026-03-18 20:22:33,normal,ChemTrans
+SMP-00593,BAT-0123,lubricant_oil,2026-01-08 09:08:49,normal,NordFuel
+SMP-00594,BAT-0166,diesel,2026-01-24 18:21:51,rush,Baltic Energy
+SMP-00595,BAT-0131,kerosene,2026-02-07 19:39:49,high,FuelCore
+SMP-00596,BAT-0070,gasoline,2026-02-28 01:07:52,normal,Baltic Energy
+SMP-00597,BAT-0049,gasoline,2026-03-11 12:31:38,normal,Baltic Energy
+SMP-00598,BAT-0146,kerosene,2026-02-22 12:15:10,normal,Baltic Energy
+SMP-00599,BAT-0153,crude_oil,2026-02-16 14:01:05,normal,Baltic Energy
+SMP-00600,BAT-0193,gasoline,2026-02-23 23:41:17,normal,NordFuel
+SMP-00601,BAT-0032,crude_oil,2026-01-25 05:40:16,high,NordFuel
+SMP-00602,BAT-0126,kerosene,2026-03-18 23:52:22,high,Baltic Energy
+SMP-00603,BAT-0184,gasoline,2026-03-29 13:32:46,normal,ChemTrans
+SMP-00604,BAT-0123,diesel,2026-01-17 16:43:49,normal,ChemTrans
+SMP-00605,BAT-0059,kerosene,2026-01-31 14:04:36,normal,PetroMax
+SMP-00606,BAT-0198,crude_oil,2026-01-27 10:55:05,high,NordFuel
+SMP-00607,BAT-0119,diesel,2026-02-14 12:05:48,normal,PetroMax
+SMP-00608,BAT-0053,crude_oil,2026-02-28 13:37:52,urgent,Baltic Energy
+SMP-00609,BAT-0034,kerosene,2026-01-06 07:38:43,normal,NordFuel
+SMP-00610,BAT-0018,gasoline,2026-02-02 12:20:24,normal,ChemTrans
+SMP-00611,BAT-0133,lubricant_oil,2026-01-13 07:18:16,high,Orlenex
+SMP-00612,BAT-0050,kerosene,2026-03-19 22:54:14,high,NordFuel
+SMP-00613,BAT-0158,gasoline,2026-03-24 22:01:38,normal,Baltic Energy
+SMP-00614,BAT-0058,crude_oil,2026-02-12 10:59:53,normal,Baltic Energy
+SMP-00615,BAT-0017,gasoline,2026-03-28 16:14:03,normal,Orlenex
+SMP-00616,BAT-0043,gasoline,2026-01-16 18:56:39,normal,ChemTrans
+SMP-00617,BAT-0174,gasoline,2026-03-07 00:01:41,normal,PetroMax
+SMP-00618,BAT-0156,gasoline,2026-01-16 14:45:16,normal,FuelCore
+SMP-00619,BAT-0080,gasoline,2026-01-21 18:36:38,normal,NordFuel
+SMP-00620,BAT-0122,crude_oil,2026-02-05 16:40:09,normal,NordFuel
+SMP-00621,BAT-0062,lubricant_oil,2026-02-28 23:14:23,normal,Baltic Energy
+SMP-00622,BAT-0051,kerosene,2026-03-17 01:33:30,urgent,PetroMax
+SMP-00623,BAT-0116,gasoline,2026-01-30 11:42:32,high,PetroMax
+SMP-00624,BAT-0107,crude_oil,2026-02-19 01:09:59,high,FuelCore
+SMP-00625,BAT-0044,gasoline,2026-03-07 13:25:58,normal,NordFuel
+SMP-00626,BAT-0046,crude_oil,2026-03-16 14:20:48,normal,PetroMax
+SMP-00627,BAT-0050,kerosene,2026-03-15 20:40:13,normal,PetroMax
+SMP-00628,BAT-0091,crude_oil,2026-03-06 20:35:03,urgent,FuelCore
+SMP-00629,BAT-0010,crude_oil,2026-01-06 15:57:23,urgent,FuelCore
+SMP-00630,BAT-0082,crude_oil,2026-01-19 01:31:58,normal,ChemTrans
+SMP-00631,BAT-0018,crude_oil,2026-02-27 10:50:53,normal,Orlenex
+SMP-00632,BAT-0070,lubricant_oil,2026-03-19 11:41:39,high,NordFuel
+SMP-00633,BAT-0104,lubricant_oil,2026-01-19 21:26:47,high,FuelCore
+SMP-00634,BAT-0106,crude_oil,2026-02-03 11:25:09,normal,NordFuel
+SMP-00635,BAT-0192,kerosene,2026-02-21 05:39:56,normal,Orlenex
+SMP-00636,BAT-0070,diesel,2026-02-16 23:17:50,normal,NordFuel
+SMP-00637,BAT-0065,diesel,2026-03-15 21:39:17,urgent,ChemTrans
+SMP-00638,BAT-0145,lubricant_oil,2026-02-04 23:36:29,normal,Orlenex
+SMP-00639,BAT-0190,crude_oil,2026-01-11 07:06:38,high,ChemTrans
+SMP-00640,BAT-0194,crude_oil,2026-03-24 02:06:40,normal,NordFuel
+SMP-00641,BAT-0058,lubricant_oil,2026-01-14 09:26:33,normal,FuelCore
+SMP-00642,BAT-0112,diesel,2026-03-10 06:23:24,high,Baltic Energy
+SMP-00643,BAT-0024,lubricant_oil,2026-01-12 12:46:45,high,NordFuel
+SMP-00644,BAT-0135,lubricant_oil,2026-01-10 09:57:21,normal,Baltic Energy
+SMP-00645,BAT-0008,crude_oil,2026-03-16 15:41:47,normal,PetroMax
+SMP-00646,BAT-0067,diesel,2026-01-09 14:09:30,normal,NordFuel
+SMP-00647,BAT-0097,gasoline,2026-03-04 03:32:37,normal,Baltic Energy
+SMP-00648,BAT-0014,kerosene,2026-01-21 12:28:50,normal,ChemTrans
+SMP-00649,BAT-0136,crude_oil,2026-03-28 18:19:40,normal,ChemTrans
+SMP-00650,BAT-0105,gasoline,2026-01-16 17:32:53,normal,
+SMP-00651,BAT-0011,diesel,2026-02-09 11:42:30,high,FuelCore
+SMP-00652,BAT-0179,lubricant_oil,2026-02-20 16:46:04,normal,Baltic Energy
+SMP-00653,BAT-0102,diesel,2026-03-20 15:45:31,normal,PetroMax
+SMP-00654,BAT-0193,lubricant_oil,2026-03-16 06:04:56,normal,Baltic Energy
+SMP-00655,BAT-0086,kerosene,2026-03-04 03:55:46,high,Baltic Energy
+SMP-00656,BAT-0164,lubricant_oil,2026-01-29 04:22:36,normal,Baltic Energy
+SMP-00657,BAT-0034,lubricant_oil,2026-02-22 09:12:54,normal,
+SMP-00658,BAT-0100,kerosene,2026-03-28 05:07:35,normal,PetroMax
+SMP-00659,BAT-0160,diesel,2026-02-21 06:09:18,high,Baltic Energy
+SMP-00660,BAT-0171,gasoline,2026-02-14 04:09:00,high,PetroMax
+SMP-00661,BAT-0197,lubricant_oil,2026-02-25 22:31:23,high,
+SMP-00662,BAT-0049,crude_oil,2026-01-19 06:58:31,high,NordFuel
+SMP-00663,BAT-0144,crude_oil,2026-03-23 11:57:15,high,Baltic Energy
+SMP-00664,BAT-0004,lubricant_oil,2026-02-17 02:58:34,high,PetroMax
+SMP-00665,BAT-0123,diesel,2026-01-01 10:16:45,normal,ChemTrans
+SMP-00666,BAT-0162,lubricant_oil,2026-01-08 10:28:54,high,Baltic Energy
+SMP-00667,BAT-0183,kerosene,2026-03-28 07:12:51,,Orlenex
+SMP-00668,BAT-0006,kerosene,2026-02-21 04:57:54,high,Baltic Energy
+SMP-00669,BAT-0053,diesel,2026-03-08 03:55:50,normal,ChemTrans
+SMP-00670,BAT-0076,lubricant_oil,2026-01-05 12:12:00,urgent,PetroMax
+SMP-00671,BAT-0151,lubricant_oil,2026-03-22 15:48:06,normal,FuelCore
+SMP-00672,BAT-0082,kerosene,2026-01-04 03:56:26,normal,ChemTrans
+SMP-00673,BAT-0133,diesel,2026-03-25 20:10:50,high,Baltic Energy
+SMP-00674,BAT-0167,diesel,2026-01-08 09:31:38,urgent,NordFuel
+SMP-00675,BAT-0155,diesel,2026-03-06 15:18:08,high,Orlenex
+SMP-00676,BAT-0178,kerosene,2026-01-10 05:35:47,normal,NordFuel
+SMP-00677,BAT-0127,kerosene,2026-02-22 22:53:50,normal,ChemTrans
+SMP-00678,BAT-0175,diesel,2026-02-06 03:05:19,normal,Baltic Energy
+SMP-00679,BAT-0152,kerosene,2026-01-20 08:57:46,normal,ChemTrans
+SMP-00680,BAT-0088,kerosene,2026-01-17 07:07:47,normal,
+SMP-00681,BAT-0176,gasoline,2026-01-11 06:11:29,normal,ChemTrans
+SMP-00682,BAT-0160,crude_oil,2026-03-27 13:18:21,high,ChemTrans
+SMP-00683,BAT-0108,kerosene,2026-03-12 23:59:38,high,ChemTrans
+SMP-00684,BAT-0136,crude_oil,2026-03-09 21:58:52,normal,Orlenex
+SMP-00685,BAT-0072,gasoline,2026-03-26 01:59:11,normal,Orlenex
+SMP-00686,BAT-0022,kerosene,2026-02-02 14:18:10,normal,PetroMax
+SMP-00687,BAT-0083,gasoline,2026-02-16 23:42:51,normal,NordFuel
+SMP-00688,BAT-0109,kerosene,2026-03-29 14:30:57,normal,Orlenex
+SMP-00689,BAT-0166,crude_oil,2026-03-03 04:48:38,normal,PetroMax
+SMP-00690,BAT-0124,diesel,2026-02-07 02:55:24,normal,ChemTrans
+SMP-00691,BAT-0114,diesel,2026-02-25 03:20:42,high,NordFuel
+SMP-00692,BAT-0084,gasoline,2026-03-10 12:52:27,urgent,ChemTrans
+SMP-00693,BAT-0157,crude_oil,2026-01-18 20:30:12,high,ChemTrans
+SMP-00694,BAT-0035,gasoline,2026-02-08 21:23:02,high,FuelCore
+SMP-00695,BAT-0178,gasoline,2026-03-07 03:01:59,normal,
+SMP-00696,BAT-0083,crude_oil,2026-02-15 00:22:41,normal,NordFuel
+SMP-00697,BAT-0156,crude_oil,2026-01-15 10:18:12,normal,FuelCore
+SMP-00698,BAT-0170,lubricant_oil,2026-03-16 02:48:59,normal,NordFuel
+SMP-00699,BAT-0161,lubricant_oil,2026-01-14 23:38:52,urgent,PetroMax
+SMP-00700,BAT-0153,gasoline,2026-01-13 18:44:07,high,ChemTrans
+SMP-00701,BAT-0007,diesel,2026-02-17 02:47:51,urgent,Orlenex
+SMP-00702,BAT-0088,gasoline,2026-01-26 16:19:05,urgent,NordFuel
+SMP-00703,BAT-0079,lubricant_oil,2026-01-07 15:11:12,normal,ChemTrans
+SMP-00704,BAT-0142,diesel,2026-01-11 01:53:44,normal,Baltic Energy
+SMP-00705,BAT-0086,crude_oil,2026-01-05 23:22:41,high,Baltic Energy
+SMP-00706,BAT-0113,gasoline,2026-03-23 17:27:07,normal,Orlenex
+SMP-00707,BAT-0007,crude_oil,2026-03-19 12:43:30,normal,Orlenex
+SMP-00708,BAT-0129,crude_oil,2026-03-20 18:23:05,normal,FuelCore
+SMP-00709,BAT-0112,diesel,2026-01-21 19:30:54,high,ChemTrans
+SMP-00710,BAT-0170,crude_oil,2026-03-03 13:55:40,high,FuelCore
+SMP-00711,BAT-0078,lubricant_oil,2026-01-14 18:07:26,normal,PetroMax
+SMP-00712,BAT-0104,crude_oil,2026-03-16 13:40:09,normal,PetroMax
+SMP-00713,BAT-0127,lubricant_oil,2026-03-04 16:43:47,normal,Orlenex
+SMP-00714,BAT-0064,gasoline,2026-03-01 17:36:23,normal,Baltic Energy
+SMP-00715,BAT-0147,diesel,2026-01-27 03:38:03,normal,ChemTrans
+SMP-00716,BAT-0092,lubricant_oil,2026-03-04 11:32:02,high,NordFuel
+SMP-00717,BAT-0050,gasoline,2026-01-27 21:32:03,normal,ChemTrans
+SMP-00718,BAT-0187,crude_oil,2026-03-26 10:37:20,normal,ChemTrans
+SMP-00719,BAT-0098,lubricant_oil,2026-01-31 15:49:44,high,PetroMax
+SMP-00720,BAT-0138,lubricant_oil,2026-03-20 17:37:13,normal,Orlenex
+SMP-00721,BAT-0076,kerosene,2026-02-06 17:55:02,high,Baltic Energy
+SMP-00722,BAT-0147,kerosene,2026-03-18 07:23:46,urgent,Baltic Energy
+SMP-00723,BAT-0162,gasoline,2026-02-28 22:36:27,normal,NordFuel
+SMP-00724,BAT-0100,crude_oil,2026-01-11 09:32:12,normal,Baltic Energy
+SMP-00725,BAT-0115,diesel,2026-03-12 01:42:35,normal,Baltic Energy
+SMP-00726,BAT-0044,gasoline,2026-01-27 00:51:31,urgent,NordFuel
+SMP-00727,BAT-0095,gasoline,2026-03-05 15:45:09,normal,FuelCore
+SMP-00728,BAT-0174,diesel,2026-02-17 20:07:01,normal,NordFuel
+SMP-00729,BAT-0059,gasoline,2026-03-12 03:49:34,normal,NordFuel
+SMP-00730,BAT-0089,diesel,2026-01-28 09:46:38,normal,FuelCore
+SMP-00731,BAT-0117,lubricant_oil,2026-02-20 02:11:37,high,ChemTrans
+SMP-00732,BAT-0187,lubricant_oil,2026-02-22 19:19:58,high,Orlenex
+SMP-00733,BAT-0183,lubricant_oil,2026-02-24 10:00:39,urgent,NordFuel
+SMP-00734,BAT-0124,kerosene,2026-01-13 03:35:16,normal,PetroMax
+SMP-00735,BAT-0108,lubricant_oil,2026-03-04 14:50:13,normal,Baltic Energy
+SMP-00736,BAT-0112,kerosene,2026-03-29 09:53:51,high,Orlenex
+SMP-00737,BAT-0069,lubricant_oil,2026-02-15 21:51:35,normal,ChemTrans
+SMP-00738,BAT-0031,kerosene,2026-02-21 16:58:56,urgent,FuelCore
+SMP-00739,BAT-0034,kerosene,2026-03-27 21:17:49,high,Baltic Energy
+SMP-00740,BAT-0093,gasoline,2026-02-19 21:32:37,normal,PetroMax
+SMP-00741,BAT-0156,lubricant_oil,2026-02-09 10:37:19,urgent,Orlenex
+SMP-00742,BAT-0033,crude_oil,2026-03-24 08:48:38,normal,NordFuel
+SMP-00743,BAT-0047,diesel,2026-03-09 05:07:50,normal,Orlenex
+SMP-00744,BAT-0028,crude_oil,2026-01-31 21:57:52,normal,PetroMax
+SMP-00745,BAT-0179,gasoline,2026-01-23 08:57:22,high,NordFuel
+SMP-00746,BAT-0037,kerosene,2026-01-20 23:07:27,high,ChemTrans
+SMP-00747,BAT-0113,gasoline,2026-02-21 05:03:00,high,NordFuel
+SMP-00748,BAT-0078,diesel,2026-02-01 04:48:21,high,Orlenex
+SMP-00749,BAT-0086,gasoline,2026-01-11 17:39:16,normal,FuelCore
+SMP-00750,BAT-0175,kerosene,2026-01-06 13:47:25,high,NordFuel
+SMP-00751,BAT-0145,gasoline,2026-03-26 23:43:39,urgent,PetroMax
+SMP-00752,BAT-0026,kerosene,2026-03-10 16:52:07,normal,NordFuel
+SMP-00753,BAT-0198,crude_oil,2026-01-21 01:38:17,high,ChemTrans
+SMP-00754,BAT-0016,kerosene,2026-02-17 14:32:32,normal,ChemTrans
+SMP-00755,BAT-0129,gasoline,2026-03-09 18:02:30,high,FuelCore
+SMP-00756,BAT-0003,diesel,2026-01-16 22:24:42,normal,PetroMax
+SMP-00757,BAT-0018,crude_oil,2026-03-13 21:52:03,high,ChemTrans
+SMP-00758,BAT-0116,gasoline,2026-03-25 13:26:37,normal,NordFuel
+SMP-00759,BAT-0119,kerosene,2026-03-28 17:40:58,normal,ChemTrans
+SMP-00760,BAT-0032,lubricant_oil,2026-02-25 22:50:20,urgent,FuelCore
+SMP-00761,BAT-0012,crude_oil,2026-03-15 04:35:15,urgent,Baltic Energy
+SMP-00762,BAT-0046,lubricant_oil,2026-01-22 02:04:37,normal,ChemTrans
+SMP-00763,BAT-0033,crude_oil,2026-01-13 17:17:04,normal,NordFuel
+SMP-00764,BAT-0184,lubricant_oil,2026-01-23 17:49:27,urgent,Orlenex
+SMP-00765,BAT-0150,lubricant_oil,2026-01-22 12:22:20,normal,PetroMax
+SMP-00766,BAT-0040,crude_oil,2026-02-25 16:57:37,normal,Orlenex
+SMP-00767,BAT-0031,crude_oil,2026-01-30 00:36:22,urgent,Baltic Energy
+SMP-00768,BAT-0169,lubricant_oil,2026-02-25 18:16:42,high,Baltic Energy
+SMP-00769,BAT-0172,lubricant_oil,2026-02-18 19:56:18,normal,Baltic Energy
+SMP-00770,BAT-0101,kerosene,2026-03-13 00:40:26,normal,ChemTrans
+SMP-00771,BAT-0048,kerosene,2026-02-28 04:39:05,normal,Baltic Energy
+SMP-00772,BAT-0099,crude_oil,2026-03-21 07:54:47,normal,FuelCore
+SMP-00773,BAT-0037,crude_oil,2026-01-09 01:01:02,normal,ChemTrans
+SMP-00774,BAT-0106,gasoline,2026-03-27 07:37:29,rush,NordFuel
+SMP-00775,BAT-0017,crude_oil,2026-02-06 00:18:29,normal,ChemTrans
+SMP-00776,BAT-0009,diesel,2026-01-13 03:24:08,normal,ChemTrans
+SMP-00777,BAT-0038,diesel,2026-01-15 23:20:03,low,Orlenex
+SMP-00778,BAT-0024,crude_oil,2026-02-23 20:27:07,urgent,PetroMax
+SMP-00779,BAT-0127,kerosene,2026-03-11 00:28:53,high,ChemTrans
+SMP-00780,BAT-0040,gasoline,2026-02-24 17:23:28,urgent,FuelCore
+SMP-00781,BAT-0018,crude_oil,2026-02-21 22:39:14,normal,Orlenex
+SMP-00782,BAT-0122,crude_oil,2026-02-05 10:25:51,normal,ChemTrans
+SMP-00783,BAT-0036,crude_oil,2026-01-25 22:58:46,normal,NordFuel
+SMP-00784,BAT-0034,kerosene,2026-03-05 15:21:00,normal,PetroMax
+SMP-00785,BAT-0132,lubricant_oil,2026-03-04 04:09:51,normal,NordFuel
+SMP-00786,BAT-0119,kerosene,2026-01-31 01:25:43,normal,FuelCore
+SMP-00787,BAT-0091,gasoline,2026-03-10 04:51:42,normal,NordFuel
+SMP-00788,BAT-0013,gasoline,2026-02-27 23:06:19,normal,PetroMax
+SMP-00789,BAT-0064,gasoline,2026-02-02 09:54:19,high,Baltic Energy
+SMP-00790,BAT-0149,kerosene,2026-01-29 00:18:18,normal,Baltic Energy
+SMP-00791,BAT-0137,lubricant_oil,2026-02-26 21:38:32,,Baltic Energy
+SMP-00792,BAT-0078,gasoline,2026-02-25 08:28:18,normal,Baltic Energy
+SMP-00793,BAT-0049,gasoline,2026-02-26 20:58:28,normal,FuelCore
+SMP-00794,BAT-0141,gasoline,2026-01-05 23:58:59,high,Baltic Energy
+SMP-00795,BAT-0183,lubricant_oil,2026-02-10 16:37:00,normal,FuelCore
+SMP-00796,BAT-0017,kerosene,2026-01-26 21:59:24,normal,PetroMax
+SMP-00797,BAT-0187,diesel,2026-01-20 15:38:04,normal,ChemTrans
+SMP-00798,BAT-0110,diesel,2026-03-17 15:59:28,normal,ChemTrans
+SMP-00799,BAT-0012,diesel,2026-02-22 18:43:09,normal,PetroMax
+SMP-00800,BAT-0106,crude_oil,2026-03-02 18:03:38,high,ChemTrans
+SMP-00801,BAT-0130,diesel,2026-01-25 08:29:47,normal,FuelCore
+SMP-00802,BAT-0178,crude_oil,2026-03-19 19:19:46,normal,NordFuel
+SMP-00803,BAT-0029,kerosene,2026-01-18 10:27:12,normal,Baltic Energy
+SMP-00804,BAT-0133,kerosene,2026-02-19 17:03:52,normal,Baltic Energy
+SMP-00805,BAT-0180,diesel,2026-02-08 21:41:06,normal,FuelCore
+SMP-00806,BAT-0039,lubricant_oil,2026-01-29 02:02:59,normal,Baltic Energy
+SMP-00807,BAT-0020,gasoline,2026-03-06 17:28:25,normal,ChemTrans
+SMP-00808,BAT-0165,crude_oil,2026-01-18 11:55:39,high,PetroMax
+SMP-00809,BAT-0001,crude_oil,2026-03-19 11:34:52,normal,ChemTrans
+SMP-00810,BAT-0079,crude_oil,2026-01-05 17:57:27,normal,ChemTrans
+SMP-00811,BAT-0189,lubricant_oil,2026-01-03 06:22:33,normal,Orlenex
+SMP-00812,BAT-0141,crude_oil,2026-02-04 19:51:28,normal,NordFuel
+SMP-00813,BAT-0163,crude_oil,2026-03-28 02:10:29,normal,ChemTrans
+SMP-00814,BAT-0136,kerosene,2026-02-01 22:09:34,high,FuelCore
+SMP-00815,BAT-0168,gasoline,2026-01-25 08:23:45,high,ChemTrans
+SMP-00816,BAT-0180,kerosene,2026-02-06 22:10:17,normal,Orlenex
+SMP-00817,BAT-0161,crude_oil,2026-03-16 12:14:25,normal,Baltic Energy
+SMP-00818,BAT-0071,crude_oil,2026-02-19 18:11:35,normal,ChemTrans
+SMP-00819,BAT-0031,crude_oil,2026-01-17 06:12:33,normal,Orlenex
+SMP-00820,BAT-0159,lubricant_oil,2026-03-13 21:05:09,normal,FuelCore
+SMP-00821,BAT-0092,diesel,2026-01-03 00:16:57,urgent,Baltic Energy
+SMP-00822,BAT-0009,crude_oil,2026-01-12 07:18:20,normal,NordFuel
+SMP-00823,BAT-0123,diesel,2026-01-31 22:59:48,urgent,NordFuel
+SMP-00824,BAT-0084,diesel,2026-01-10 16:36:08,high,NordFuel
+SMP-00825,BAT-0143,gasoline,2026-03-11 11:55:54,high,ChemTrans
+SMP-00826,BAT-0014,lubricant_oil,2026-03-25 00:33:25,normal,Baltic Energy
+SMP-00827,BAT-0149,gasoline,2026-03-10 12:32:32,high,ChemTrans
+SMP-00828,BAT-0134,lubricant_oil,2026-01-19 00:36:10,normal,PetroMax
+SMP-00829,BAT-0013,crude_oil,2026-02-20 00:46:34,normal,PetroMax
+SMP-00830,BAT-0014,lubricant_oil,2026-02-27 09:04:18,normal,PetroMax
+SMP-00831,BAT-0071,lubricant_oil,2026-03-17 17:19:37,normal,ChemTrans
+SMP-00832,BAT-0119,lubricant_oil,2026-03-01 11:32:42,high,FuelCore
+SMP-00833,BAT-0195,diesel,2026-02-21 02:50:48,urgent,ChemTrans
+SMP-00834,BAT-0189,lubricant_oil,2026-03-06 02:12:04,urgent,FuelCore
+SMP-00835,BAT-0197,gasoline,2026-01-20 06:45:11,normal,Orlenex
+SMP-00836,BAT-0026,lubricant_oil,2026-03-11 23:08:52,normal,Baltic Energy
+SMP-00837,BAT-0016,crude_oil,2026-03-03 04:09:24,normal,Baltic Energy
+SMP-00838,BAT-0121,kerosene,2026-01-18 23:25:00,normal,NordFuel
+SMP-00839,BAT-0160,kerosene,2026-02-01 17:24:47,normal,NordFuel
+SMP-00840,BAT-0131,crude_oil,2026-01-26 21:31:36,normal,FuelCore
+SMP-00841,BAT-0158,lubricant_oil,2026-02-14 10:41:59,high,Baltic Energy
+SMP-00842,BAT-0199,crude_oil,2026-01-21 01:14:44,normal,NordFuel
+SMP-00843,BAT-0050,lubricant_oil,2026-03-22 12:29:50,normal,Orlenex
+SMP-00844,BAT-0017,crude_oil,2026-01-06 19:52:50,high,Orlenex
+SMP-00845,BAT-0066,lubricant_oil,2026-02-09 20:05:05,normal,NordFuel
+SMP-00846,BAT-0122,crude_oil,2026-01-15 19:54:57,normal,Orlenex
+SMP-00847,BAT-0145,crude_oil,2026-01-03 20:34:37,high,NordFuel
+SMP-00848,BAT-0141,crude_oil,2026-02-16 08:24:32,high,Orlenex
+SMP-00849,BAT-0122,diesel,2026-02-06 19:44:30,normal,NordFuel
+SMP-00850,BAT-0139,gasoline,2026-01-12 04:51:17,normal,NordFuel
+SMP-00851,BAT-0110,lubricant_oil,2026-03-07 19:36:58,normal,NordFuel
+SMP-00852,BAT-0101,lubricant_oil,2026-03-13 05:52:02,normal,NordFuel
+SMP-00853,BAT-0176,diesel,2026-03-26 10:26:19,normal,Baltic Energy
+SMP-00854,BAT-0031,kerosene,2026-03-19 20:13:23,normal,ChemTrans
+SMP-00855,BAT-0188,gasoline,2026-01-30 11:31:13,normal,PetroMax
+SMP-00856,BAT-0115,crude_oil,2026-01-10 15:58:43,normal,PetroMax
+SMP-00857,BAT-0104,kerosene,2026-02-13 05:02:29,normal,PetroMax
+SMP-00858,BAT-0039,kerosene,2026-01-14 23:56:39,normal,Baltic Energy
+SMP-00859,BAT-0198,lubricant_oil,2026-01-14 21:02:00,normal,Baltic Energy
+SMP-00860,BAT-0063,lubricant_oil,2026-01-15 05:58:11,normal,PetroMax
+SMP-00861,BAT-0080,kerosene,2026-03-12 18:19:07,normal,Baltic Energy
+SMP-00862,BAT-0053,gasoline,2026-02-18 02:01:09,high,Baltic Energy
+SMP-00863,BAT-0181,kerosene,2026-02-04 10:04:52,urgent,Orlenex
+SMP-00864,BAT-0016,diesel,2026-02-05 10:36:07,normal,Orlenex
+SMP-00865,BAT-0155,gasoline,2026-01-17 05:16:42,normal,ChemTrans
+SMP-00866,BAT-0001,kerosene,2026-01-24 00:05:54,normal,Baltic Energy
+SMP-00867,BAT-0047,crude_oil,2026-01-16 23:09:07,high,Baltic Energy
+SMP-00868,BAT-0021,crude_oil,2026-03-20 17:48:56,normal,PetroMax
+SMP-00869,BAT-0163,kerosene,2026-03-22 02:10:36,normal,Baltic Energy
+SMP-00870,BAT-0107,crude_oil,2026-02-11 18:24:15,normal,FuelCore
+SMP-00871,BAT-0094,gasoline,2026-02-15 12:44:42,high,ChemTrans
+SMP-00872,BAT-0142,gasoline,2026-03-24 13:27:25,rush,Orlenex
+SMP-00873,BAT-0083,crude_oil,2026-03-13 18:32:16,normal,Orlenex
+SMP-00874,BAT-0020,crude_oil,2026-02-01 01:14:55,high,PetroMax
+SMP-00875,BAT-0150,kerosene,2026-03-25 09:30:44,urgent,Baltic Energy
+SMP-00876,BAT-0128,lubricant_oil,2026-01-10 21:26:02,normal,Baltic Energy
+SMP-00877,BAT-0129,kerosene,2026-01-13 05:27:10,normal,Baltic Energy
+SMP-00878,BAT-0129,gasoline,2026-03-10 20:20:54,normal,NordFuel
+SMP-00879,BAT-0110,gasoline,2026-01-14 13:09:06,normal,FuelCore
+SMP-00880,BAT-0111,lubricant_oil,2026-03-23 11:46:40,normal,PetroMax
+SMP-00881,BAT-0122,diesel,2026-02-26 10:09:46,normal,
+SMP-00882,BAT-0067,diesel,2026-03-24 09:10:29,normal,NordFuel
+SMP-00883,BAT-0041,lubricant_oil,2026-03-28 01:38:03,normal,PetroMax
+SMP-00884,BAT-0004,crude_oil,2026-03-28 18:58:36,normal,FuelCore
+SMP-00885,BAT-0047,gasoline,2026-03-31 08:20:46,NORMAL,ChemTrans
+SMP-00886,BAT-0158,lubricant_oil,2026-03-21 17:12:04,urgent,Baltic Energy
+SMP-00887,BAT-0044,kerosene,2026-03-26 02:57:54,normal,FuelCore
+SMP-00888,BAT-0193,kerosene,2026-03-24 12:27:32,high,NordFuel
+SMP-00889,BAT-0139,lubricant_oil,2026-03-31 01:28:15,normal,NordFuel
+SMP-00890,BAT-0085,crude_oil,2026-01-23 06:42:10,high,ChemTrans
+SMP-00891,BAT-0024,diesel,2026-03-27 17:51:30,normal,Orlenex
+SMP-00892,BAT-0053,kerosene,2026-02-03 12:40:46,normal,PetroMax
+SMP-00893,BAT-0103,gasoline,2026-02-07 12:40:34,normal,NordFuel
+SMP-00894,BAT-0026,lubricant_oil,2026-03-04 10:57:07,normal,NordFuel
+SMP-00895,BAT-0083,lubricant_oil,2026-03-19 03:40:08,normal,NordFuel
+SMP-00896,BAT-0071,crude_oil,2026-03-28 02:31:07,normal,FuelCore
+SMP-00897,BAT-0189,gasoline,2026-01-09 02:46:12,high,Orlenex
+SMP-00898,BAT-0142,kerosene,2026-01-19 15:42:35,normal,Baltic Energy
+SMP-00899,BAT-0011,diesel,2026-02-10 03:09:28,normal,Baltic Energy
+SMP-00900,BAT-0023,lubricant_oil,2026-01-22 21:44:48,normal,PetroMax
