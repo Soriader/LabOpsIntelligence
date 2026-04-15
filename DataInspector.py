@@ -22,7 +22,7 @@ class DataInspector:
         print("=" * 50)
 
     @staticmethod
-    def display_null_value(df: pd.DataFrame, name: str = "Null value") -> None:
+    def display_null_value(df: pd.DataFrame, name: str = "Null value", column_name: str = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
             raise TypeError("df must be a pandas DataFrame")
@@ -31,19 +31,19 @@ class DataInspector:
             print(f"⚠️ {name} is empty!")
             return
 
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' not found")
+
         print("=" * 50)
         print(f"📊 NULL ANALYSIS: {name}")
         print("=" * 50)
 
-        nulls_per_column = df.isnull().sum()
+        nulls_per_column = df[column_name].isnull().sum()
 
-        if nulls_per_column.sum() == 0:
-            print("✅ No null values found!")
+        if nulls_per_column == 0:
+            print(f"✅ No null values in column '{column_name}'!")
         else:
-            print(f"📈 Total nulls: {nulls_per_column.sum():,}\n")
-            print("📑 Nulls per column:")
-            for col, null_count in nulls_per_column[nulls_per_column > 0].items():
-                print(f"   • {col}: {null_count:,}")
+            print(f"📈 Nulls in '{column_name}': {nulls_per_column:,} ({nulls_per_column / len(df) * 100:.2f}%)")
 
         print("=" * 50)
 
@@ -84,5 +84,18 @@ class DataInspector:
 
         return (df.shape[0], df.shape[1],
                 df.memory_usage(deep=True).sum() / 1024 ** 2)
+
+
+    @staticmethod
+    def display_data(df: pd.DataFrame, name: str = "Dataset") -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        print("=" * 50)
+        print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
+
+
+
 
 
