@@ -85,7 +85,6 @@ class DataInspector:
         return (df.shape[0], df.shape[1],
                 df.memory_usage(deep=True).sum() / 1024 ** 2)
 
-
     @staticmethod
     def display_data(df: pd.DataFrame, name: str = "Dataset") -> None:
 
@@ -94,6 +93,45 @@ class DataInspector:
 
         print("=" * 50)
         print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
+
+    @staticmethod
+    def display_priority_in_sample(df: pd.DataFrame, name: str = "Dataset", column_name: str = None) -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if column_name is None:
+            raise ValueError("column_name must be provided")
+
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' not found")
+
+        allowed_values = ["normal", "high", "urgent"]
+
+        unique_values = df[column_name].unique()
+
+        invalid_values = [val for val in unique_values if val not in allowed_values]
+
+        print("=" * 50)
+        print(f"📊 PRIORITY VALIDATION: {name}")
+        print(f"📍 Column: {column_name}")
+        print("=" * 50)
+
+        print(f"📈 Allowed values: {', '.join(allowed_values)}")
+        print(f"🔍 Found unique values: {', '.join(map(str, unique_values))}")
+
+        if invalid_values:
+            print(f"\n❌ INCORRECT values found: {', '.join(map(str, invalid_values))}")
+            print(f"📊 Count of incorrect records: {len(invalid_values)}")
+        else:
+            print(f"\n✅ All values are correct! Only allowed values present.")
+
+        print("=" * 50)
+
 
 
 
