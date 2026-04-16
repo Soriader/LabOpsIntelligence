@@ -94,6 +94,14 @@ class DataInspector:
         print("=" * 50)
         print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
 
+        # Sprawdź czy testing_started jest przed testing_finished
+        invalid_tests = df[df['testing_started'] >= df['testing_finished']]
+
+        if len(invalid_tests) > 0:
+            print(f"Znaleziono {len(invalid_tests)} błędów:")
+            for _, row in invalid_tests.iterrows():
+                print(f"  ID: {row['sample_id']} - start: {row['testing_started']}, finish: {row['testing_finished']}")
+
     @staticmethod
     def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
 
@@ -148,6 +156,9 @@ class DataInspector:
             print(f"⚠️ {name} is empty!")
             return
 
+        if column_name is None:
+            raise ValueError("column_name must be provided")
+
         if column_name not in df.columns:
             raise ValueError(f"Column '{column_name}' not found")
 
@@ -168,3 +179,32 @@ class DataInspector:
                 for _, row in incorrect.iterrows():
                     print(f"      • ID: {row['test_id']} → unit: {row[column_name]}")
 
+    @staticmethod
+    def unlogical_combination(df: pd.DataFrame, name: str = "Dataset",
+                              status_col: str = None, result_col: str = None):
+
+
+        print("=" * 50)
+        print(f"📊 LOGICAL COMBINATION VALIDATION: {name}")
+        print("=" * 50)
+
+        errors_found = 0
+
+        for idx, row in df.iterrows():
+            status = row[status_col]
+            result = row[result_col]
+
+            if status == "OK" and pd.isna(result):
+                print(f"❌ ID: {row.get('test_id', idx)} - Status 'OK' but result_value is missing")
+                errors_found += 1
+
+            elif status == "ERROR" and pd.notna(result):
+                print(f"❌ ID: {row.get('test_id', idx)} - Status 'ERROR' but result_value exists: {result}")
+                errors_found += 1
+
+        if errors_found == 0:
+            print("✅ All combinations are logical!")
+        else:
+            print(f"\n📈 Total logical errors: {errors_found}")
+
+        print("=" * 50)
