@@ -86,23 +86,6 @@ class DataInspector:
                 df.memory_usage(deep=True).sum() / 1024 ** 2)
 
     @staticmethod
-    def display_data(df: pd.DataFrame, name: str = "Dataset") -> None:
-
-        pass
-        # if not isinstance(df, pd.DataFrame):
-        #     raise TypeError("df must be a pandas DataFrame")
-        #
-        # print("=" * 50)
-        # print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
-        #
-        # invalid_tests = df[df['testing_started'] >= df['testing_finished']]
-        #
-        # if len(invalid_tests) > 0:
-        #     print(f"Znaleziono {len(invalid_tests)} błędów:")
-        #     for _, row in invalid_tests.iterrows():
-        #         print(f"  ID: {row['sample_id']} - start: {row['testing_started']}, finish: {row['testing_finished']}")
-
-    @staticmethod
     def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
@@ -265,3 +248,76 @@ class DataInspector:
         print("=" * 50)
 
         pass
+
+    @staticmethod
+    def find_outliers(df: pd.DataFrame, name: str = "Dataset",
+                      unit_col: str = 'unit', result_col: str = 'result_value') -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if name is None:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if unit_col is None:
+            raise ValueError("column_name must be provided")
+
+        if result_col is None:
+            raise ValueError("column_name must be provided")
+
+        if unit_col not in df.columns:
+            raise ValueError(f"Column '{unit_col}' not found")
+
+        if result_col not in df.columns:
+            raise ValueError(f"Column '{result_col}' not found")
+
+        thresholds = {
+            'mg/kg': {'max': 1000, 'min': 0},
+            'kg/m3': {'max': 1000, 'min': 0},
+            'cSt': {'max': 500, 'min': 0},
+            'C': {'max': 300, 'min': -50}  # temperatura może być ujemna!
+        }
+
+        print("=" * 50)
+        print(f"📊 OUTLIER DETECTION: {name}")
+        print("=" * 50)
+
+        outliers_found = 0
+
+        for idx, row in df.iterrows():
+            unit = row[unit_col]
+            result = row[result_col]
+
+            if pd.isna(result):
+                continue
+
+            if unit not in thresholds:
+                continue
+
+            try:
+                value = float(result)
+                threshold = thresholds[unit]
+
+                if value > threshold['max']:
+                    print(f"❌ ID: {row.get('test_id', idx)} - {value} {unit} is too high (max: {threshold['max']})")
+                    outliers_found += 1
+                elif value < threshold['min']:
+                    print(f"❌ ID: {row.get('test_id', idx)} - {value} {unit} is too low (min: {threshold['min']})")
+                    outliers_found += 1
+
+            except (ValueError, TypeError):
+                print(f"⚠️ ID: {row.get('test_id', idx)} - Invalid numeric value: '{result}'")
+                outliers_found += 1
+
+        if outliers_found == 0:
+            print("✅ No outliers found!")
+
+        print("=" * 50)
+
+
+
