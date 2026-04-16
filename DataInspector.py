@@ -22,7 +22,8 @@ class DataInspector:
         print("=" * 50)
 
     @staticmethod
-    def display_null_value(df: pd.DataFrame, name: str = "Null value", column_name: str = None) -> None:
+    def display_null_value(df: pd.DataFrame, name: str = "Dataset",
+                           column_name: str = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
             raise TypeError("df must be a pandas DataFrame")
@@ -31,19 +32,45 @@ class DataInspector:
             print(f"⚠️ {name} is empty!")
             return
 
+        if column_name is None:
+            raise ValueError("column_name must be provided")
+
         if column_name not in df.columns:
             raise ValueError(f"Column '{column_name}' not found")
 
         print("=" * 50)
-        print(f"📊 NULL ANALYSIS: {name}")
+        print(f"📊 MISSING VALUES ANALYSIS: {name}")
+        print(f"📍 Column: {column_name}")
         print("=" * 50)
 
-        nulls_per_column = df[column_name].isnull().sum()
+        total_rows = len(df)
 
-        if nulls_per_column == 0:
-            print(f"✅ No null values in column '{column_name}'!")
-        else:
-            print(f"📈 Nulls in '{column_name}': {nulls_per_column:,} ({nulls_per_column / len(df) * 100:.2f}%)")
+        nan_count = df[column_name].isnull().sum()
+
+        empty_string_count = 0
+        whitespace_count = 0
+
+        if df[column_name].dtype == 'object':  # Tylko dla kolumn tekstowych
+            empty_string_count = (df[column_name] == "").sum()
+
+            whitespace_count = df[column_name].astype(str).str.strip().eq("").sum() - empty_string_count
+
+        total_missing = nan_count + empty_string_count + whitespace_count
+
+        print(f"📈 Total rows: {total_rows:,}")
+        print(f"🔍 Missing values breakdown:")
+        print(f"   • NaN/None: {nan_count:,} ({nan_count / total_rows * 100:.2f}%)")
+
+        if empty_string_count > 0:
+            print(f"   • Empty strings '': {empty_string_count:,} ({empty_string_count / total_rows * 100:.2f}%)")
+
+        if whitespace_count > 0:
+            print(f"   • Whitespace strings: {whitespace_count:,} ({whitespace_count / total_rows * 100:.2f}%)")
+
+        print(f"\n📊 TOTAL MISSING: {total_missing:,} ({total_missing / total_rows * 100:.2f}%)")
+
+        if total_missing == 0:
+            print(f"\n✅ No missing values found in column '{column_name}'!")
 
         print("=" * 50)
 
@@ -86,7 +113,8 @@ class DataInspector:
                 df.memory_usage(deep=True).sum() / 1024 ** 2)
 
     @staticmethod
-    def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
+    def display_correct_value(df: pd.DataFrame, name: str = "Dataset",
+                              column_name: str = None, allowed_values: list = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
             raise TypeError("df must be a pandas DataFrame")
@@ -96,8 +124,7 @@ class DataInspector:
             return
 
         if allowed_values is None:
-            print(f"⚠️ {allowed_values} is empty!")
-            return
+            raise ValueError("allowed_values must be provided")
 
         if column_name is None:
             raise ValueError("column_name must be provided")
@@ -105,28 +132,40 @@ class DataInspector:
         if column_name not in df.columns:
             raise ValueError(f"Column '{column_name}' not found")
 
-        unique_values = df[column_name].unique()
+        invalid_mask = ~df[column_name].isin(allowed_values)
+        invalid_records = df[invalid_mask]
+        invalid_count = len(invalid_records)
 
-        invalid_values = [val for val in unique_values if val not in allowed_values]
+        unique_invalid_values = invalid_records[column_name].unique()
+
+        total_rows = len(df)
+        valid_count = total_rows - invalid_count
 
         print("=" * 50)
-        print(f"📊 PRIORITY VALIDATION: {name}")
+        print(f"📊 COLUMN VALIDATION: {name}")
         print(f"📍 Column: {column_name}")
         print("=" * 50)
 
-        print(f"📈 Allowed values: {', '.join(allowed_values)}")
-        print(f"🔍 Found unique values: {', '.join(map(str, unique_values))}")
+        print(f"✅ Allowed values: {', '.join(map(str, allowed_values))}")
+        print(f"📈 Total rows: {total_rows:,}")
+        print(f"✔️  Valid records: {valid_count:,} ({valid_count / total_rows * 100:.2f}%)")
 
-        if invalid_values:
-            print(f"\n❌ INCORRECT values found: {', '.join(map(str, invalid_values))}")
-            print(f"📊 Count of incorrect records: {len(invalid_values)}")
+        if invalid_count > 0:
+            print(f"❌ Invalid records: {invalid_count:,} ({invalid_count / total_rows * 100:.2f}%)")
+            print(f"\n⚠️  Invalid values found: {', '.join(map(str, unique_invalid_values))}")
+
+            print(f"\n📊 Invalid values distribution:")
+            invalid_distribution = invalid_records[column_name].value_counts()
+            for val, count in invalid_distribution.items():
+                print(f"   • '{val}': {count} times")
         else:
-            print(f"\n✅ All values are correct! Only allowed values present.")
+            print(f"\n✅ All values are correct!")
 
         print("=" * 50)
 
     @staticmethod
-    def units_correctness(df: pd.DataFrame, name: str = "Null value", column_name: str = None, correct_units: dict = None) -> None:
+    def units_correctness(df: pd.DataFrame, name: str = "Dataset",
+                          column_name: str = None, correct_units: dict = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
             raise TypeError("df must be a pandas DataFrame")
@@ -136,8 +175,7 @@ class DataInspector:
             return
 
         if correct_units is None:
-            print(f"⚠️ {name} is empty!")
-            return
+            raise ValueError("correct_units dictionary must be provided")  # Poprawiony komunikat
 
         if column_name is None:
             raise ValueError("column_name must be provided")
@@ -145,9 +183,15 @@ class DataInspector:
         if column_name not in df.columns:
             raise ValueError(f"Column '{column_name}' not found")
 
+        # Sprawdź czy kolumna 'unit' istnieje
+        if 'unit' not in df.columns:
+            raise ValueError("Column 'unit' not found in DataFrame")
+
         print("=" * 50)
         print(f"📊 CORRECT UNITS ANALYSIS: {name}")
         print("=" * 50)
+
+        errors_found = 0
 
         for param, expected_unit in correct_units.items():
             param_df = df[df[column_name] == param]
@@ -155,12 +199,20 @@ class DataInspector:
             incorrect = param_df[param_df['unit'] != expected_unit]
 
             if len(incorrect) > 0:
+                errors_found += len(incorrect)
                 print(f"\n❌ PARAMETER: {param}")
                 print(f"   Expected unit: {expected_unit}")
-                print(f"   Find wrong units:")
+                print(f"   Found {len(incorrect)} incorrect record(s):")
 
                 for _, row in incorrect.iterrows():
-                    print(f"      • ID: {row['test_id']} → unit: {row[column_name]}")
+                    print(f"      • ID: {row['test_id']} → wrong unit: '{row['unit']}' (should be: '{expected_unit}')")
+
+        if errors_found == 0:
+            print("\n✅ All units are correct!")
+        else:
+            print(f"\n📈 Total incorrect units: {errors_found}")
+
+        print("=" * 50)
 
     @staticmethod
     def unlogical_combination(df: pd.DataFrame, name: str = "Dataset",
