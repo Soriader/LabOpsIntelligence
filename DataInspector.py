@@ -95,7 +95,7 @@ class DataInspector:
         print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
 
     @staticmethod
-    def display_priority_in_sample(df: pd.DataFrame, name: str = "Dataset", column_name: str = None) -> None:
+    def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
 
         if not isinstance(df, pd.DataFrame):
             raise TypeError("df must be a pandas DataFrame")
@@ -104,13 +104,15 @@ class DataInspector:
             print(f"⚠️ {name} is empty!")
             return
 
+        if allowed_values is None:
+            print(f"⚠️ {allowed_values} is empty!")
+            return
+
         if column_name is None:
             raise ValueError("column_name must be provided")
 
         if column_name not in df.columns:
             raise ValueError(f"Column '{column_name}' not found")
-
-        allowed_values = ["normal", "high", "urgent"]
 
         unique_values = df[column_name].unique()
 
@@ -132,8 +134,37 @@ class DataInspector:
 
         print("=" * 50)
 
+    @staticmethod
+    def units_correctness(df: pd.DataFrame, name: str = "Null value", column_name: str = None, correct_units: dict = None) -> None:
 
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
 
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
 
+        if correct_units is None:
+            print(f"⚠️ {name} is empty!")
+            return
 
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' not found")
+
+        print("=" * 50)
+        print(f"📊 CORRECT UNITS ANALYSIS: {name}")
+        print("=" * 50)
+
+        for param, expected_unit in correct_units.items():
+            param_df = df[df[column_name] == param]
+
+            incorrect = param_df[param_df['unit'] != expected_unit]
+
+            if len(incorrect) > 0:
+                print(f"\n❌ PARAMETER: {param}")
+                print(f"   Expected unit: {expected_unit}")
+                print(f"   Find wrong units:")
+
+                for _, row in incorrect.iterrows():
+                    print(f"      • ID: {row['test_id']} → unit: {row[column_name]}")
 
