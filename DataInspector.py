@@ -88,19 +88,19 @@ class DataInspector:
     @staticmethod
     def display_data(df: pd.DataFrame, name: str = "Dataset") -> None:
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        print("=" * 50)
-        print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
-
-        # Sprawdź czy testing_started jest przed testing_finished
-        invalid_tests = df[df['testing_started'] >= df['testing_finished']]
-
-        if len(invalid_tests) > 0:
-            print(f"Znaleziono {len(invalid_tests)} błędów:")
-            for _, row in invalid_tests.iterrows():
-                print(f"  ID: {row['sample_id']} - start: {row['testing_started']}, finish: {row['testing_finished']}")
+        pass
+        # if not isinstance(df, pd.DataFrame):
+        #     raise TypeError("df must be a pandas DataFrame")
+        #
+        # print("=" * 50)
+        # print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
+        #
+        # invalid_tests = df[df['testing_started'] >= df['testing_finished']]
+        #
+        # if len(invalid_tests) > 0:
+        #     print(f"Znaleziono {len(invalid_tests)} błędów:")
+        #     for _, row in invalid_tests.iterrows():
+        #         print(f"  ID: {row['sample_id']} - start: {row['testing_started']}, finish: {row['testing_finished']}")
 
     @staticmethod
     def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
@@ -183,6 +183,28 @@ class DataInspector:
     def unlogical_combination(df: pd.DataFrame, name: str = "Dataset",
                               status_col: str = None, result_col: str = None):
 
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if name is None:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if status_col is None:
+            raise ValueError("column_name must be provided")
+
+        if result_col is None:
+            raise ValueError("column_name must be provided")
+
+        if status_col not in df.columns:
+            raise ValueError(f"Column '{status_col}' not found")
+
+        if result_col not in df.columns:
+            raise ValueError(f"Column '{result_col}' not found")
 
         print("=" * 50)
         print(f"📊 LOGICAL COMBINATION VALIDATION: {name}")
@@ -208,3 +230,38 @@ class DataInspector:
             print(f"\n📈 Total logical errors: {errors_found}")
 
         print("=" * 50)
+
+    @staticmethod
+    def duplicated_in_tests(df: pd.DataFrame, name: str = "Dataset", test_id: str = 'test_id', parameter: str = 'parameter') -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if name is None:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if test_id is None:
+            raise ValueError("column_name must be provided")
+
+        if parameter is None:
+            raise ValueError("column_name must be provided")
+
+        if test_id not in df.columns:
+            raise ValueError(f"Column '{test_id}' not found")
+
+        if parameter not in df.columns:
+            raise ValueError(f"Column '{parameter}' not found")
+
+        duplicates = df.duplicated(subset=[test_id, parameter], keep=False)
+
+        print("=" * 50)
+        print(f"📊 DUPLICATE ANALYSIS")
+        print(duplicates)
+        print("=" * 50)
+
+        pass
