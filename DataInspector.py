@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 import numpy as np
 
@@ -280,7 +282,7 @@ class DataInspector:
             'mg/kg': {'max': 1000, 'min': 0},
             'kg/m3': {'max': 1000, 'min': 0},
             'cSt': {'max': 500, 'min': 0},
-            'C': {'max': 300, 'min': -50}  # temperatura może być ujemna!
+            'C': {'max': 300, 'min': -50}
         }
 
         print("=" * 50)
@@ -348,14 +350,14 @@ class DataInspector:
         samples_with_issues = 0
 
         for sample, group in group_by_id:
-            has_events = set(group[column_name].unique())
+            sample_events = set(group[column_name].unique())
 
-            missing_events = required_events - has_events
+            missing_events = required_events - sample_events
 
             if missing_events:
                 samples_with_issues += 1
                 print(f"\n❌ Sample: {sample}")
-                print(f"   Has: {sorted(has_events)}")
+                print(f"   Has: {sorted(sample_events)}")
                 print(f"   Missing: {sorted(missing_events)}")
 
         print("\n" + "=" * 50)
@@ -366,3 +368,118 @@ class DataInspector:
             print(f"⚠️ {samples_with_issues} sample(s) have missing events")
 
         print("=" * 50)
+
+    @staticmethod
+    def check_event_order(
+            df: pd.DataFrame,
+            name: str = "Dataset",
+            sample_col: str = "sample_id",
+            event_col: str = "event_type",
+            timestamp_col: str = "event_timestamp"
+    ) -> None:
+
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
+
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        for col in [sample_col, event_col, timestamp_col]:
+            if col not in df.columns:
+                raise ValueError(f"Column '{col}' not found")
+
+        df = df.copy()
+        df[timestamp_col] = pd.to_datetime(df[timestamp_col], errors="coerce")
+
+        expected_events = ["received", "testing_started", "testing_finished", "validated"]
+
+        print("=" * 60)
+        print(f"📊 EVENT ORDER VALIDATION: {name}")
+        print("=" * 60)
+
+        missing_event_errors = 0
+        duplicate_event_errors = 0
+        order_errors_count = 0
+        invalid_timestamp_errors = 0
+
+        total_samples = df[sample_col].nunique()
+
+        for sample_value, group in df.groupby(sample_col):
+            existing_events = set(group[event_col].unique())
+            missing_events = [event for event in expected_events if event not in existing_events]
+
+            if missing_events:
+                print(f"❌ {sample_value}: missing events -> {missing_events}")
+                missing_event_errors += 1
+                continue
+
+            duplicate_found = False
+
+            for event in expected_events:
+                event_count = (group[event_col] == event).sum()
+
+                if event_count > 1:
+                    print(f"❌ {sample_value}: duplicate event '{event}' appears {event_count} times")
+                    duplicate_event_errors += 1
+                    duplicate_found = True
+
+            if duplicate_found:
+                continue
+
+            timestamps = {}
+            invalid_timestamp_for_sample = False
+
+            for event in expected_events:
+                event_time = group.loc[group[event_col] == event, timestamp_col].iloc[0]
+
+                if pd.isna(event_time):
+                    print(f"❌ {sample_value}: invalid timestamp for event '{event}'")
+                    invalid_timestamp_errors += 1
+                    invalid_timestamp_for_sample = True
+                else:
+                    timestamps[event] = event_time
+
+            if invalid_timestamp_for_sample:
+                continue
+
+            if not (timestamps["received"] < timestamps["testing_started"]):
+                print(
+                    f"❌ {sample_value}: received ({timestamps['received']}) >= "
+                    f"testing_started ({timestamps['testing_started']})"
+                )
+                order_errors_count += 1
+
+            if not (timestamps["testing_started"] < timestamps["testing_finished"]):
+                print(
+                    f"❌ {sample_value}: testing_started ({timestamps['testing_started']}) >= "
+                    f"testing_finished ({timestamps['testing_finished']})"
+                )
+                order_errors_count += 1
+
+            if not (timestamps["testing_finished"] < timestamps["validated"]):
+                print(
+                    f"❌ {sample_value}: testing_finished ({timestamps['testing_finished']}) >= "
+                    f"validated ({timestamps['validated']})"
+                )
+                order_errors_count += 1
+
+        print("\n" + "=" * 60)
+        print("📊 SUMMARY:")
+        print(f"   Total samples: {total_samples:,}")
+        print(f"   Missing event errors: {missing_event_errors:,}")
+        print(f"   Duplicate event errors: {duplicate_event_errors:,}")
+        print(f"   Invalid timestamp errors: {invalid_timestamp_errors:,}")
+        print(f"   Order errors: {order_errors_count:,}")
+
+        total_errors = (
+                missing_event_errors
+                + duplicate_event_errors
+                + invalid_timestamp_errors
+                + order_errors_count
+        )
+
+        if total_errors == 0:
+            print("   ✅ All samples have correct event sequence!")
+
+        print("=" * 60)
