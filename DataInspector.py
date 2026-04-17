@@ -319,5 +319,50 @@ class DataInspector:
 
         print("=" * 50)
 
+    @staticmethod
+    def validate_required_events_per_sample(df: pd.DataFrame,
+                                            name: str = "Dataset",
+                                            sample_id: str = "sample_id",
+                                            column_name: str = "event_type") -> None:
 
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError("df must be a pandas DataFrame")
 
+        if df.empty:
+            print(f"⚠️ {name} is empty!")
+            return
+
+        if sample_id not in df.columns:
+            raise ValueError(f"Column '{sample_id}' not found")
+
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' not found")
+
+        required_events = {"received", "testing_started", "testing_finished", "validated"}
+
+        print("=" * 50)
+        print(f"📊 EVENT VALIDATION: {name}")
+        print("=" * 50)
+
+        group_by_id = df.groupby(sample_id)
+        samples_with_issues = 0
+
+        for sample, group in group_by_id:
+            has_events = set(group[column_name].unique())
+
+            missing_events = required_events - has_events
+
+            if missing_events:
+                samples_with_issues += 1
+                print(f"\n❌ Sample: {sample}")
+                print(f"   Has: {sorted(has_events)}")
+                print(f"   Missing: {sorted(missing_events)}")
+
+        print("\n" + "=" * 50)
+
+        if samples_with_issues == 0:
+            print("✅ Every sample_id contains all required events")
+        else:
+            print(f"⚠️ {samples_with_issues} sample(s) have missing events")
+
+        print("=" * 50)
