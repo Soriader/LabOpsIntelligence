@@ -483,3 +483,160 @@ class DataInspector:
             print("   ✅ All samples have correct event sequence!")
 
         print("=" * 60)
+
+    @staticmethod
+    def check_samples_lab_events_date(
+            samples_df: pd.DataFrame,
+            events_df: pd.DataFrame,
+            name: str = "Dataset",
+            sample_col: str = "sample_id",
+            samples_date_col: str = "date_received",
+            event_type_col: str = "event_type",
+            event_timestamp_col: str = "event_timestamp"
+    ) -> None:
+
+        if not isinstance(samples_df, pd.DataFrame):
+            raise TypeError("samples_df must be a pandas DataFrame")
+
+        if not isinstance(events_df, pd.DataFrame):
+            raise TypeError("events_df must be a pandas DataFrame")
+
+        if samples_df.empty:
+            print(f"⚠️ samples_df is empty!")
+            return
+
+        if events_df.empty:
+            print(f"⚠️ events_df is empty!")
+            return
+
+        required_samples_cols = [sample_col, samples_date_col]
+        required_events_cols = [sample_col, event_type_col, event_timestamp_col]
+
+        for col in required_samples_cols:
+            if col not in samples_df.columns:
+                raise ValueError(f"Column '{col}' not found in samples_df")
+
+        for col in required_events_cols:
+            if col not in events_df.columns:
+                raise ValueError(f"Column '{col}' not found in events_df")
+
+        print("=" * 70)
+        print(f"📊 SAMPLES VS LAB_EVENTS DATE VALIDATION: {name}")
+        print("=" * 70)
+
+        # 1. Prepare samples subset
+        samples_subset = samples_df[[sample_col, samples_date_col]].copy()
+        samples_subset[samples_date_col] = pd.to_datetime(
+            samples_subset[samples_date_col],
+            errors="coerce"
+        )
+
+        # 2. Prepare only 'received' events
+        received_events = events_df[events_df[event_type_col] == "received"].copy()
+        received_events = received_events[[sample_col, event_timestamp_col]].copy()
+        received_events = received_events.rename(
+            columns={event_timestamp_col: "received_timestamp"}
+        )
+        received_events["received_timestamp"] = pd.to_datetime(
+            received_events["received_timestamp"],
+            errors="coerce"
+        )
+
+        # 3. Check duplicates in received events
+        duplicate_received = received_events[
+            received_events.duplicated(subset=[sample_col], keep=False)
+        ].copy()
+
+        duplicate_sample_ids = set(duplicate_received[sample_col].unique())
+
+        if len(duplicate_received) > 0:
+            print(f"❌ Duplicate 'received' events found for {len(duplicate_sample_ids)} sample(s):")
+            for sample_value in sorted(duplicate_sample_ids):
+                count = (received_events[sample_col] == sample_value).sum()
+                print(f"   • {sample_value}: {count} 'received' events")
+
+        # 4. Exclude duplicate sample_ids from comparison
+        received_events_unique = received_events[
+            ~received_events[sample_col].isin(duplicate_sample_ids)
+        ].copy()
+
+        # 5. Merge samples with received events
+        merged = samples_subset.merge(
+            received_events_unique,
+            on=sample_col,
+            how="left"
+        )
+
+        # 6. Check missing received event
+        missing_received = merged[merged["received_timestamp"].isna()].copy()
+
+        if len(missing_received) > 0:
+            print(f"\n❌ Missing 'received' event for {len(missing_received)} sample(s):")
+            for _, row in missing_received.iterrows():
+                print(f"   • {row[sample_col]}")
+
+        # 7. Keep only comparable rows
+        comparable = merged.dropna(subset=[samples_date_col, "received_timestamp"]).copy()
+
+        # 8. Compute time difference
+        comparable["time_diff"] = comparable["received_timestamp"] - comparable[samples_date_col]
+        comparable["time_diff_minutes"] = comparable["time_diff"].dt.total_seconds() / 60
+        comparable["abs_time_diff_minutes"] = comparable["time_diff_minutes"].abs()
+
+        # 9. Categorize differences
+        def classify_difference(minutes: float) -> str:
+            if minutes <= 5:
+                return "OK"
+            elif minutes <= 60:
+                return "SUSPICIOUS"
+            else:
+                return "ERROR"
+
+        comparable["comparison_status"] = comparable["abs_time_diff_minutes"].apply(classify_difference)
+
+        # 10. Show suspicious and error cases
+        suspicious_rows = comparable[comparable["comparison_status"] == "SUSPICIOUS"]
+        error_rows = comparable[comparable["comparison_status"] == "ERROR"]
+
+        if len(suspicious_rows) > 0:
+            print(f"\n⚠️ Suspicious time differences ({len(suspicious_rows)} sample(s)):")
+            for _, row in suspicious_rows.iterrows():
+                print(
+                    f"   • {row[sample_col]}: "
+                    f"date_received={row[samples_date_col]}, "
+                    f"received_timestamp={row['received_timestamp']}, "
+                    f"diff={row['time_diff_minutes']:.2f} min"
+                )
+
+        if len(error_rows) > 0:
+            print(f"\n❌ Incorrect time differences ({len(error_rows)} sample(s)):")
+            for _, row in error_rows.iterrows():
+                print(
+                    f"   • {row[sample_col]}: "
+                    f"date_received={row[samples_date_col]}, "
+                    f"received_timestamp={row['received_timestamp']}, "
+                    f"diff={row['time_diff_minutes']:.2f} min"
+                )
+
+        # 11. Invalid dates
+        invalid_samples_dates = samples_subset[samples_subset[samples_date_col].isna()]
+        invalid_received_dates = received_events_unique[received_events_unique["received_timestamp"].isna()]
+
+        # 12. Summary
+        total_samples = samples_subset[sample_col].nunique()
+        ok_count = (comparable["comparison_status"] == "OK").sum()
+        suspicious_count = (comparable["comparison_status"] == "SUSPICIOUS").sum()
+        error_count = (comparable["comparison_status"] == "ERROR").sum()
+
+        print("\n" + "=" * 70)
+        print("📊 SUMMARY:")
+        print(f"   Total samples: {total_samples:,}")
+        print(f"   Duplicate 'received' sample_ids: {len(duplicate_sample_ids):,}")
+        print(f"   Missing 'received' events: {len(missing_received):,}")
+        print(f"   Invalid dates in samples: {len(invalid_samples_dates):,}")
+        print(f"   Invalid received timestamps: {len(invalid_received_dates):,}")
+        print(f"   Comparable rows: {len(comparable):,}")
+        print(f"   OK: {ok_count:,}")
+        print(f"   SUSPICIOUS: {suspicious_count:,}")
+        print(f"   ERROR: {error_count:,}")
+        print("=" * 70)
