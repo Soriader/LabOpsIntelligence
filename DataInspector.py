@@ -640,3 +640,128 @@ class DataInspector:
         print(f"   SUSPICIOUS: {suspicious_count:,}")
         print(f"   ERROR: {error_count:,}")
         print("=" * 70)
+
+    @staticmethod
+    def check_tests_vs_events(
+            tests_df: pd.DataFrame,
+            events_df: pd.DataFrame,
+            name: str = "Dataset",
+            sample_col: str = "sample_id",
+            test_date_col: str = "test_date",
+            event_type_col: str = "event_type",
+            event_timestamp_col: str = "event_timestamp"
+    ) -> None:
+
+        if not isinstance(tests_df, pd.DataFrame):
+            raise TypeError("tests_df must be a pandas DataFrame")
+
+        if not isinstance(events_df, pd.DataFrame):
+            raise TypeError("events_df must be a pandas DataFrame")
+
+        if tests_df.empty:
+            print("⚠️ tests_df is empty!")
+            return
+
+        if events_df.empty:
+            print("⚠️ events_df is empty!")
+            return
+
+        required_tests_cols = [sample_col, test_date_col]
+        required_events_cols = [sample_col, event_type_col, event_timestamp_col]
+
+        for col in required_tests_cols:
+            if col not in tests_df.columns:
+                raise ValueError(f"Column '{col}' not found in tests_df")
+
+        for col in required_events_cols:
+            if col not in events_df.columns:
+                raise ValueError(f"Column '{col}' not found in events_df")
+
+        print("=" * 70)
+        print(f"📊 TESTS VS LAB_EVENTS VALIDATION: {name}")
+        print("=" * 70)
+
+        # 1. Prepare tests
+        tests = tests_df[[sample_col, test_date_col]].copy()
+        tests[test_date_col] = pd.to_datetime(tests[test_date_col], errors="coerce")
+
+        # 2. Prepare events (pivot: received, started, finished)
+        events = events_df.copy()
+        events[event_timestamp_col] = pd.to_datetime(events[event_timestamp_col], errors="coerce")
+
+        required_events = ["received", "testing_started", "testing_finished"]
+
+        # only important events
+        events = events[events[event_type_col].isin(required_events)]
+
+        # pivot -> one line for sample_id
+        events_pivot = events.pivot_table(
+            index=sample_col,
+            columns=event_type_col,
+            values=event_timestamp_col,
+            aggfunc="first"
+        ).reset_index()
+
+        # change column name
+        events_pivot = events_pivot.rename(columns={
+            "received": "received_ts",
+            "testing_started": "testing_started_ts",
+            "testing_finished": "testing_finished_ts"
+        })
+
+        # 3. Merge
+        merged = tests.merge(events_pivot, on=sample_col, how="left")
+
+        # 4. Missing events
+        missing_events = merged[
+            merged[["received_ts", "testing_started_ts", "testing_finished_ts"]].isna().any(axis=1)
+        ]
+
+        if len(missing_events) > 0:
+            print(f"❌ {len(missing_events)} tests with missing event timestamps")
+
+        # 5. We remove incomplete ones for further validation
+        valid = merged.dropna(
+            subset=["received_ts", "testing_started_ts", "testing_finished_ts", test_date_col]
+        ).copy()
+
+        # 6. Logical validations
+
+        # test before received
+        before_received = valid[valid[test_date_col] < valid["received_ts"]]
+
+        # test before start
+        before_start = valid[valid[test_date_col] < valid["testing_started_ts"]]
+
+        # post-test
+        after_finish = valid[valid[test_date_col] > valid["testing_finished_ts"]]
+
+        correct = valid[
+            (valid[test_date_col] >= valid["testing_started_ts"]) &
+            (valid[test_date_col] <= valid["testing_finished_ts"])
+            ]
+
+        # 7. Result
+
+        if len(before_received) > 0:
+            print(f"\n❌ Tests before 'received': {len(before_received)}")
+            for _, row in before_received.iterrows():
+                print(f"   • {row[sample_col]} | test_date={row[test_date_col]} < received={row['received_ts']}")
+
+        if len(before_start) > 0:
+            print(f"\n⚠️ Tests before 'testing_started': {len(before_start)}")
+
+        if len(after_finish) > 0:
+            print(f"\n❌ Tests after 'testing_finished': {len(after_finish)}")
+
+        # 8. Summary
+        print("\n" + "=" * 70)
+        print("📊 SUMMARY:")
+        print(f"   Total tests: {len(tests):,}")
+        print(f"   Missing event data: {len(missing_events):,}")
+        print(f"   Valid for comparison: {len(valid):,}")
+        print(f"   Correct tests: {len(correct):,}")
+        print(f"   Before received: {len(before_received):,}")
+        print(f"   Before testing_started: {len(before_start):,}")
+        print(f"   After testing_finished: {len(after_finish):,}")
+        print("=" * 70)
