@@ -1,80 +1,86 @@
-import datetime
-
 import pandas as pd
-import numpy as np
 
 class DataInspector:
 
     @staticmethod
-    def display_dimensions(df: pd.DataFrame, name: str = "Dataset") -> None:
-
+    def _validate_dataframe(df: pd.DataFrame, name: str = "Dataset") -> None:
         if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
+            raise TypeError(f"{name} must be a pandas DataFrame")
 
         if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
+            raise ValueError(f"{name} is empty")
+
+    @staticmethod
+    def _validate_column_exists(df: pd.DataFrame, column_name: str) -> None:
+        if column_name is None:
+            raise ValueError("column_name must be provided")
+
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' not found")
+
+    @staticmethod
+    def _is_missing_value(series: pd.Series) -> pd.Series:
+        return series.isna() | series.astype(str).str.strip().eq("")
+
+    @staticmethod
+    def display_dimensions(df: pd.DataFrame, name: str = "Dataset") -> None:
+        DataInspector._validate_dataframe(df, name)
 
         print("=" * 50)
         print(f"📊 {name}")
         print("=" * 50)
         print(f"📈 Rows: {df.shape[0]:,}")
         print(f"📑 Columns: {df.shape[1]}")
-        print(f"💾 Size: {df.shape[0]:,} × {df.shape[1]}")
+        print(f"🧩 Shape: {df.shape[0]:,} × {df.shape[1]}")
         print("=" * 50)
 
     @staticmethod
-    def display_null_value(df: pd.DataFrame, name: str = "Null value", column_name: str = None) -> None:
+    def display_null_value(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        column_name: str = None
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+        DataInspector._validate_column_exists(df, column_name)
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if column_name not in df.columns:
-            raise ValueError(f"Column '{column_name}' not found")
+        missing_mask = DataInspector._is_missing_value(df[column_name])
+        missing_count = missing_mask.sum()
+        total_rows = len(df)
 
         print("=" * 50)
-        print(f"📊 NULL ANALYSIS: {name}")
+        print(f"📊 MISSING VALUES ANALYSIS: {name}")
+        print(f"📍 Column: {column_name}")
         print("=" * 50)
+        print(f"📈 Total rows: {total_rows:,}")
+        print(f"📊 Missing values: {missing_count:,} ({missing_count / total_rows * 100:.2f}%)")
 
-        nulls_per_column = df[column_name].isnull().sum()
-
-        if nulls_per_column == 0:
-            print(f"✅ No null values in column '{column_name}'!")
-        else:
-            print(f"📈 Nulls in '{column_name}': {nulls_per_column:,} ({nulls_per_column / len(df) * 100:.2f}%)")
+        if missing_count == 0:
+            print(f"✅ No missing values found in '{column_name}'")
 
         print("=" * 50)
 
     @staticmethod
-    def display_unique_value(df: pd.DataFrame, name: str = "Unique value", column_name: str = None) -> None:
-
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if column_name is None:
-            raise ValueError("column_name must be provided")
+    def display_unique_value(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        column_name: str = None
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+        DataInspector._validate_column_exists(df, column_name)
 
         unique_values = df[column_name].unique()
-        unique_count = df[column_name].nunique()
+        unique_count = df[column_name].nunique(dropna=False)
         total_rows = len(df)
 
         print("=" * 50)
         print(f"📊 UNIQUE VALUES ANALYSIS: {name}")
         print(f"📍 Column: {column_name}")
         print("=" * 50)
-        print(f"📈 Total unique values: {unique_count:,} / {total_rows:,} ({unique_count / total_rows * 100:.2f}%)")
+        print(f"📈 Unique values: {unique_count:,} / {total_rows:,}")
 
-        print(f"\n🔍 Unique values (first {min(20, unique_count)}):")
-        for i, value in enumerate(unique_values[:20]):
-            print(f"   {i + 1}. {value}")
+        print(f"\n🔍 First {min(20, unique_count)} unique values:")
+        for i, value in enumerate(unique_values[:20], start=1):
+            print(f"   {i}. {value}")
 
         if unique_count > 20:
             print(f"   ... and {unique_count - 20} more")
@@ -82,312 +88,285 @@ class DataInspector:
         print("=" * 50)
 
     @staticmethod
-    def get_shape_info(df: pd.DataFrame, name: str = "Dataset") -> tuple:
+    def display_correct_value(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        column_name: str = None,
+        allowed_values: list = None
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+        DataInspector._validate_column_exists(df, column_name)
 
-        return (df.shape[0], df.shape[1],
-                df.memory_usage(deep=True).sum() / 1024 ** 2)
+        if allowed_values is None or len(allowed_values) == 0:
+            raise ValueError("allowed_values must be provided and cannot be empty")
 
-    @staticmethod
-    def display_correct_value(df: pd.DataFrame, name: str = "Dataset", column_name: str = None, allowed_values: list = None) -> None:
-
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if allowed_values is None:
-            print(f"⚠️ {allowed_values} is empty!")
-            return
-
-        if column_name is None:
-            raise ValueError("column_name must be provided")
-
-        if column_name not in df.columns:
-            raise ValueError(f"Column '{column_name}' not found")
-
-        unique_values = df[column_name].unique()
-
-        invalid_values = [val for val in unique_values if val not in allowed_values]
+        invalid_mask = ~df[column_name].isin(allowed_values)
+        invalid_rows = df[invalid_mask]
+        invalid_unique_values = invalid_rows[column_name].unique()
 
         print("=" * 50)
-        print(f"📊 PRIORITY VALIDATION: {name}")
+        print(f"📊 VALUE VALIDATION: {name}")
         print(f"📍 Column: {column_name}")
         print("=" * 50)
+        print(f"📈 Allowed values: {', '.join(map(str, allowed_values))}")
+        print(f"🔍 Found values: {', '.join(map(str, df[column_name].unique()))}")
 
-        print(f"📈 Allowed values: {', '.join(allowed_values)}")
-        print(f"🔍 Found unique values: {', '.join(map(str, unique_values))}")
-
-        if invalid_values:
-            print(f"\n❌ INCORRECT values found: {', '.join(map(str, invalid_values))}")
-            print(f"📊 Count of incorrect records: {len(invalid_values)}")
+        if len(invalid_rows) > 0:
+            print(f"\n❌ Incorrect unique values: {', '.join(map(str, invalid_unique_values))}")
+            print(f"📊 Incorrect records: {len(invalid_rows):,}")
         else:
-            print(f"\n✅ All values are correct! Only allowed values present.")
+            print("\n✅ All values are correct")
 
         print("=" * 50)
 
     @staticmethod
-    def units_correctness(df: pd.DataFrame, name: str = "Null value", column_name: str = None, correct_units: dict = None) -> None:
+    def units_correctness(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        parameter_col: str = "parameter",
+        unit_col: str = "unit",
+        correct_units: dict = None
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+        DataInspector._validate_column_exists(df, parameter_col)
+        DataInspector._validate_column_exists(df, unit_col)
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
+        if correct_units is None or len(correct_units) == 0:
+            raise ValueError("correct_units must be provided and cannot be empty")
 
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
+        print("=" * 60)
+        print(f"📊 UNIT CORRECTNESS ANALYSIS: {name}")
+        print("=" * 60)
 
-        if correct_units is None:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if column_name is None:
-            raise ValueError("column_name must be provided")
-
-        if column_name not in df.columns:
-            raise ValueError(f"Column '{column_name}' not found")
-
-        print("=" * 50)
-        print(f"📊 CORRECT UNITS ANALYSIS: {name}")
-        print("=" * 50)
+        total_incorrect = 0
 
         for param, expected_unit in correct_units.items():
-            param_df = df[df[column_name] == param]
-
-            incorrect = param_df[param_df['unit'] != expected_unit]
+            param_df = df[df[parameter_col] == param]
+            incorrect = param_df[param_df[unit_col] != expected_unit]
 
             if len(incorrect) > 0:
+                total_incorrect += len(incorrect)
+
                 print(f"\n❌ PARAMETER: {param}")
                 print(f"   Expected unit: {expected_unit}")
-                print(f"   Find wrong units:")
+                print(f"   Incorrect records: {len(incorrect):,}")
 
                 for _, row in incorrect.iterrows():
-                    print(f"      • ID: {row['test_id']} → unit: {row[column_name]}")
+                    print(
+                        f"      • ID: {row.get('test_id', 'N/A')} "
+                        f"→ actual unit: {row[unit_col]}"
+                    )
+
+        if total_incorrect == 0:
+            print("✅ All units are correct")
+
+        print(f"\n📊 TOTAL INCORRECT UNIT RECORDS: {total_incorrect:,}")
+        print("=" * 60)
 
     @staticmethod
-    def unlogical_combination(df: pd.DataFrame, name: str = "Dataset",
-                              status_col: str = None, result_col: str = None):
+    def unlogical_combination(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        status_col: str = "status",
+        result_col: str = "result_value"
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+        DataInspector._validate_column_exists(df, status_col)
+        DataInspector._validate_column_exists(df, result_col)
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if name is None:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if status_col is None:
-            raise ValueError("column_name must be provided")
-
-        if result_col is None:
-            raise ValueError("column_name must be provided")
-
-        if status_col not in df.columns:
-            raise ValueError(f"Column '{status_col}' not found")
-
-        if result_col not in df.columns:
-            raise ValueError(f"Column '{result_col}' not found")
-
-        print("=" * 50)
+        print("=" * 60)
         print(f"📊 LOGICAL COMBINATION VALIDATION: {name}")
-        print("=" * 50)
+        print("=" * 60)
 
-        errors_found = 0
+        missing_result_mask = DataInspector._is_missing_value(df[result_col])
 
-        for idx, row in df.iterrows():
-            status = row[status_col]
-            result = row[result_col]
+        ok_but_missing = df[(df[status_col] == "OK") & missing_result_mask]
+        error_but_has_result = df[(df[status_col] == "ERROR") & ~missing_result_mask]
 
-            if status == "OK" and pd.isna(result):
-                print(f"❌ ID: {row.get('test_id', idx)} - Status 'OK' but result_value is missing")
-                errors_found += 1
+        if len(ok_but_missing) > 0:
+            print(f"❌ Status='OK' but missing result_value: {len(ok_but_missing):,}")
 
-            elif status == "ERROR" and pd.notna(result):
-                print(f"❌ ID: {row.get('test_id', idx)} - Status 'ERROR' but result_value exists: {result}")
-                errors_found += 1
+        if len(error_but_has_result) > 0:
+            print(f"❌ Status='ERROR' but result_value exists: {len(error_but_has_result):,}")
 
-        if errors_found == 0:
-            print("✅ All combinations are logical!")
+        total_errors = len(ok_but_missing) + len(error_but_has_result)
+
+        if total_errors == 0:
+            print("✅ All status/result combinations are logical")
         else:
-            print(f"\n📈 Total logical errors: {errors_found}")
+            print(f"\n📈 Total logical errors: {total_errors:,}")
 
-        print("=" * 50)
-
-    @staticmethod
-    def duplicated_in_tests(df: pd.DataFrame, name: str = "Dataset", test_id: str = 'test_id', parameter: str = 'parameter') -> None:
-
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if name is None:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if test_id is None:
-            raise ValueError("column_name must be provided")
-
-        if parameter is None:
-            raise ValueError("column_name must be provided")
-
-        if test_id not in df.columns:
-            raise ValueError(f"Column '{test_id}' not found")
-
-        if parameter not in df.columns:
-            raise ValueError(f"Column '{parameter}' not found")
-
-        duplicates = df.duplicated(subset=[test_id, parameter], keep=False)
-
-        print("=" * 50)
-        print(f"📊 DUPLICATE ANALYSIS")
-        print(duplicates)
-        print("=" * 50)
-
-        pass
+        print("=" * 60)
 
     @staticmethod
-    def find_outliers(df: pd.DataFrame, name: str = "Dataset",
-                      unit_col: str = 'unit', result_col: str = 'result_value') -> None:
+    def duplicated_in_tests(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        sample_col: str = "sample_id",
+        parameter_col: str = "parameter",
+        date_col: str = "test_date"
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
+        for col in [sample_col, parameter_col]:
+            DataInspector._validate_column_exists(df, col)
 
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
+        print("=" * 60)
+        print(f"📊 DUPLICATE ANALYSIS: {name}")
+        print("=" * 60)
+        print(f"🔍 Checking duplicates by: {sample_col} + {parameter_col}")
 
-        if name is None:
-            print(f"⚠️ {name} is empty!")
-            return
+        duplicates_mask = df.duplicated(subset=[sample_col, parameter_col], keep=False)
+        duplicate_rows = df[duplicates_mask]
 
-        if unit_col is None:
-            raise ValueError("column_name must be provided")
+        if len(duplicate_rows) == 0:
+            print("✅ No duplicates found")
+        else:
+            duplicate_groups = duplicate_rows.groupby([sample_col, parameter_col])
 
-        if result_col is None:
-            raise ValueError("column_name must be provided")
+            print(f"❌ Duplicate rows: {len(duplicate_rows):,}")
+            print(f"📊 Duplicate groups: {len(duplicate_groups):,}")
 
-        if unit_col not in df.columns:
-            raise ValueError(f"Column '{unit_col}' not found")
+            for (sample_id, parameter), group in duplicate_groups:
+                print(f"\n   📌 {sample_id} → {parameter}: {len(group)} occurrences")
 
-        if result_col not in df.columns:
-            raise ValueError(f"Column '{result_col}' not found")
+                if "test_id" in df.columns:
+                    print(f"      Test IDs: {group['test_id'].tolist()}")
+
+                if date_col in df.columns:
+                    print(f"      Dates: {group[date_col].tolist()}")
+
+        duplicate_percent = len(duplicate_rows) / len(df) * 100
+
+        print("\n📈 Summary:")
+        print(f"   Total rows: {len(df):,}")
+        print(f"   Duplicate rows: {len(duplicate_rows):,} ({duplicate_percent:.2f}%)")
+        print("=" * 60)
+
+    @staticmethod
+    def find_outliers(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        param_col: str = "parameter",
+        result_col: str = "result_value",
+        unit_col: str = "unit",
+        custom_thresholds: dict = None
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
+
+        for col in [param_col, result_col, unit_col]:
+            DataInspector._validate_column_exists(df, col)
 
         thresholds = {
-            'mg/kg': {'max': 1000, 'min': 0},
-            'kg/m3': {'max': 1000, 'min': 0},
-            'cSt': {'max': 500, 'min': 0},
-            'C': {'max': 300, 'min': -50}
+            "sulfur": {"min": 0, "max": 50, "unit": "mg/kg"},
+            "water": {"min": 0, "max": 600, "unit": "mg/kg"},
+            "density": {"min": 600, "max": 1100, "unit": "kg/m3"},
+            "viscosity": {"min": 0, "max": 150, "unit": "cSt"},
+            "chloride": {"min": 0, "max": 100, "unit": "mg/kg"},
+            "flash_point": {"min": -10, "max": 100, "unit": "C"},
         }
 
-        print("=" * 50)
+        if custom_thresholds:
+            thresholds.update(custom_thresholds)
+
+        print("=" * 60)
         print(f"📊 OUTLIER DETECTION: {name}")
-        print("=" * 50)
+        print("=" * 60)
 
         outliers_found = 0
+        invalid_values = 0
 
         for idx, row in df.iterrows():
-            unit = row[unit_col]
+            param = row[param_col]
             result = row[result_col]
 
-            if pd.isna(result):
+            if DataInspector._is_missing_value(pd.Series([result])).iloc[0]:
                 continue
 
-            if unit not in thresholds:
+            if param not in thresholds:
                 continue
 
             try:
                 value = float(result)
-                threshold = thresholds[unit]
-
-                if value > threshold['max']:
-                    print(f"❌ ID: {row.get('test_id', idx)} - {value} {unit} is too high (max: {threshold['max']})")
-                    outliers_found += 1
-                elif value < threshold['min']:
-                    print(f"❌ ID: {row.get('test_id', idx)} - {value} {unit} is too low (min: {threshold['min']})")
-                    outliers_found += 1
-
             except (ValueError, TypeError):
-                print(f"⚠️ ID: {row.get('test_id', idx)} - Invalid numeric value: '{result}'")
+                print(f"⚠️ ID: {row.get('test_id', idx)} - invalid numeric value: {result}")
+                invalid_values += 1
+                continue
+
+            min_value = thresholds[param]["min"]
+            max_value = thresholds[param]["max"]
+            expected_unit = thresholds[param]["unit"]
+
+            if value < min_value:
+                print(
+                    f"❌ {param}: ID {row.get('test_id', idx)} "
+                    f"→ {value} {expected_unit} < {min_value}"
+                )
                 outliers_found += 1
 
-        if outliers_found == 0:
-            print("✅ No outliers found!")
+            elif value > max_value:
+                print(
+                    f"❌ {param}: ID {row.get('test_id', idx)} "
+                    f"→ {value} {expected_unit} > {max_value}"
+                )
+                outliers_found += 1
 
-        print("=" * 50)
+        print("\n📊 OUTLIER SUMMARY:")
+        print(f"   Outliers found: {outliers_found:,}")
+        print(f"   Invalid numeric values: {invalid_values:,}")
+
+        if outliers_found == 0 and invalid_values == 0:
+            print("✅ No outliers or invalid numeric values found")
+
+        print("=" * 60)
 
     @staticmethod
-    def validate_required_events_per_sample(df: pd.DataFrame,
-                                            name: str = "Dataset",
-                                            sample_id: str = "sample_id",
-                                            column_name: str = "event_type") -> None:
+    def validate_required_events_per_sample(
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        sample_col: str = "sample_id",
+        event_col: str = "event_type"
+    ) -> None:
+        DataInspector._validate_dataframe(df, name)
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
-
-        if sample_id not in df.columns:
-            raise ValueError(f"Column '{sample_id}' not found")
-
-        if column_name not in df.columns:
-            raise ValueError(f"Column '{column_name}' not found")
+        for col in [sample_col, event_col]:
+            DataInspector._validate_column_exists(df, col)
 
         required_events = {"received", "testing_started", "testing_finished", "validated"}
 
-        print("=" * 50)
-        print(f"📊 EVENT VALIDATION: {name}")
-        print("=" * 50)
+        print("=" * 60)
+        print(f"📊 REQUIRED EVENTS VALIDATION: {name}")
+        print("=" * 60)
 
-        group_by_id = df.groupby(sample_id)
         samples_with_issues = 0
 
-        for sample, group in group_by_id:
-            sample_events = set(group[column_name].unique())
-
+        for sample_id, group in df.groupby(sample_col):
+            sample_events = set(group[event_col].unique())
             missing_events = required_events - sample_events
 
             if missing_events:
                 samples_with_issues += 1
-                print(f"\n❌ Sample: {sample}")
-                print(f"   Has: {sorted(sample_events)}")
-                print(f"   Missing: {sorted(missing_events)}")
-
-        print("\n" + "=" * 50)
+                print(f"❌ {sample_id}: missing {sorted(missing_events)}")
 
         if samples_with_issues == 0:
-            print("✅ Every sample_id contains all required events")
+            print("✅ Every sample has all required events")
         else:
-            print(f"⚠️ {samples_with_issues} sample(s) have missing events")
+            print(f"⚠️ Samples with missing events: {samples_with_issues:,}")
 
-        print("=" * 50)
+        print("=" * 60)
 
     @staticmethod
     def check_event_order(
-            df: pd.DataFrame,
-            name: str = "Dataset",
-            sample_col: str = "sample_id",
-            event_col: str = "event_type",
-            timestamp_col: str = "event_timestamp"
+        df: pd.DataFrame,
+        name: str = "Dataset",
+        sample_col: str = "sample_id",
+        event_col: str = "event_type",
+        timestamp_col: str = "event_timestamp"
     ) -> None:
-
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("df must be a pandas DataFrame")
-
-        if df.empty:
-            print(f"⚠️ {name} is empty!")
-            return
+        DataInspector._validate_dataframe(df, name)
 
         for col in [sample_col, event_col, timestamp_col]:
-            if col not in df.columns:
-                raise ValueError(f"Column '{col}' not found")
+            DataInspector._validate_column_exists(df, col)
 
         df = df.copy()
         df[timestamp_col] = pd.to_datetime(df[timestamp_col], errors="coerce")
@@ -400,10 +379,8 @@ class DataInspector:
 
         missing_event_errors = 0
         duplicate_event_errors = 0
-        order_errors_count = 0
         invalid_timestamp_errors = 0
-
-        total_samples = df[sample_col].nunique()
+        order_errors = 0
 
         for sample_value, group in df.groupby(sample_col):
             existing_events = set(group[event_col].unique())
@@ -428,110 +405,81 @@ class DataInspector:
                 continue
 
             timestamps = {}
-            invalid_timestamp_for_sample = False
 
             for event in expected_events:
                 event_time = group.loc[group[event_col] == event, timestamp_col].iloc[0]
 
                 if pd.isna(event_time):
-                    print(f"❌ {sample_value}: invalid timestamp for event '{event}'")
+                    print(f"❌ {sample_value}: invalid timestamp for '{event}'")
                     invalid_timestamp_errors += 1
-                    invalid_timestamp_for_sample = True
-                else:
-                    timestamps[event] = event_time
+                    timestamps = None
+                    break
 
-            if invalid_timestamp_for_sample:
+                timestamps[event] = event_time
+
+            if timestamps is None:
                 continue
 
             if not (timestamps["received"] < timestamps["testing_started"]):
-                print(
-                    f"❌ {sample_value}: received ({timestamps['received']}) >= "
-                    f"testing_started ({timestamps['testing_started']})"
-                )
-                order_errors_count += 1
+                print(f"❌ {sample_value}: received >= testing_started")
+                order_errors += 1
 
             if not (timestamps["testing_started"] < timestamps["testing_finished"]):
-                print(
-                    f"❌ {sample_value}: testing_started ({timestamps['testing_started']}) >= "
-                    f"testing_finished ({timestamps['testing_finished']})"
-                )
-                order_errors_count += 1
+                print(f"❌ {sample_value}: testing_started >= testing_finished")
+                order_errors += 1
 
             if not (timestamps["testing_finished"] < timestamps["validated"]):
-                print(
-                    f"❌ {sample_value}: testing_finished ({timestamps['testing_finished']}) >= "
-                    f"validated ({timestamps['validated']})"
-                )
-                order_errors_count += 1
+                print(f"❌ {sample_value}: testing_finished >= validated")
+                order_errors += 1
 
-        print("\n" + "=" * 60)
-        print("📊 SUMMARY:")
-        print(f"   Total samples: {total_samples:,}")
+        total_errors = (
+            missing_event_errors
+            + duplicate_event_errors
+            + invalid_timestamp_errors
+            + order_errors
+        )
+
+        print("\n📊 SUMMARY:")
+        print(f"   Total samples: {df[sample_col].nunique():,}")
         print(f"   Missing event errors: {missing_event_errors:,}")
         print(f"   Duplicate event errors: {duplicate_event_errors:,}")
         print(f"   Invalid timestamp errors: {invalid_timestamp_errors:,}")
-        print(f"   Order errors: {order_errors_count:,}")
-
-        total_errors = (
-                missing_event_errors
-                + duplicate_event_errors
-                + invalid_timestamp_errors
-                + order_errors_count
-        )
+        print(f"   Order errors: {order_errors:,}")
 
         if total_errors == 0:
-            print("   ✅ All samples have correct event sequence!")
+            print("✅ All samples have correct event sequence")
 
         print("=" * 60)
 
     @staticmethod
     def check_samples_lab_events_date(
-            samples_df: pd.DataFrame,
-            events_df: pd.DataFrame,
-            name: str = "Dataset",
-            sample_col: str = "sample_id",
-            samples_date_col: str = "date_received",
-            event_type_col: str = "event_type",
-            event_timestamp_col: str = "event_timestamp"
+        samples_df: pd.DataFrame,
+        events_df: pd.DataFrame,
+        name: str = "Dataset",
+        sample_col: str = "sample_id",
+        samples_date_col: str = "date_received",
+        event_type_col: str = "event_type",
+        event_timestamp_col: str = "event_timestamp"
     ) -> None:
+        DataInspector._validate_dataframe(samples_df, "samples_df")
+        DataInspector._validate_dataframe(events_df, "events_df")
 
-        if not isinstance(samples_df, pd.DataFrame):
-            raise TypeError("samples_df must be a pandas DataFrame")
+        for col in [sample_col, samples_date_col]:
+            DataInspector._validate_column_exists(samples_df, col)
 
-        if not isinstance(events_df, pd.DataFrame):
-            raise TypeError("events_df must be a pandas DataFrame")
-
-        if samples_df.empty:
-            print(f"⚠️ samples_df is empty!")
-            return
-
-        if events_df.empty:
-            print(f"⚠️ events_df is empty!")
-            return
-
-        required_samples_cols = [sample_col, samples_date_col]
-        required_events_cols = [sample_col, event_type_col, event_timestamp_col]
-
-        for col in required_samples_cols:
-            if col not in samples_df.columns:
-                raise ValueError(f"Column '{col}' not found in samples_df")
-
-        for col in required_events_cols:
-            if col not in events_df.columns:
-                raise ValueError(f"Column '{col}' not found in events_df")
+        for col in [sample_col, event_type_col, event_timestamp_col]:
+            DataInspector._validate_column_exists(events_df, col)
 
         print("=" * 70)
         print(f"📊 SAMPLES VS LAB_EVENTS DATE VALIDATION: {name}")
         print("=" * 70)
 
-        # 1. Prepare samples subset
         samples_subset = samples_df[[sample_col, samples_date_col]].copy()
         samples_subset[samples_date_col] = pd.to_datetime(
             samples_subset[samples_date_col],
             errors="coerce"
         )
 
-        # 2. Prepare only 'received' events
         received_events = events_df[events_df[event_type_col] == "received"].copy()
         received_events = received_events[[sample_col, event_timestamp_col]].copy()
         received_events = received_events.rename(
@@ -542,159 +490,96 @@ class DataInspector:
             errors="coerce"
         )
 
-        # 3. Check duplicates in received events
         duplicate_received = received_events[
             received_events.duplicated(subset=[sample_col], keep=False)
-        ].copy()
+        ]
 
         duplicate_sample_ids = set(duplicate_received[sample_col].unique())
 
-        if len(duplicate_received) > 0:
-            print(f"❌ Duplicate 'received' events found for {len(duplicate_sample_ids)} sample(s):")
-            for sample_value in sorted(duplicate_sample_ids):
-                count = (received_events[sample_col] == sample_value).sum()
-                print(f"   • {sample_value}: {count} 'received' events")
+        if duplicate_sample_ids:
+            print(f"❌ Duplicate 'received' events for {len(duplicate_sample_ids)} sample(s)")
 
-        # 4. Exclude duplicate sample_ids from comparison
         received_events_unique = received_events[
             ~received_events[sample_col].isin(duplicate_sample_ids)
         ].copy()
 
-        # 5. Merge samples with received events
         merged = samples_subset.merge(
             received_events_unique,
             on=sample_col,
             how="left"
         )
 
-        # 6. Check missing received event
-        missing_received = merged[merged["received_timestamp"].isna()].copy()
+        missing_received = merged[merged["received_timestamp"].isna()]
 
-        if len(missing_received) > 0:
-            print(f"\n❌ Missing 'received' event for {len(missing_received)} sample(s):")
-            for _, row in missing_received.iterrows():
-                print(f"   • {row[sample_col]}")
-
-        # 7. Keep only comparable rows
         comparable = merged.dropna(subset=[samples_date_col, "received_timestamp"]).copy()
 
-        # 8. Compute time difference
         comparable["time_diff"] = comparable["received_timestamp"] - comparable[samples_date_col]
         comparable["time_diff_minutes"] = comparable["time_diff"].dt.total_seconds() / 60
         comparable["abs_time_diff_minutes"] = comparable["time_diff_minutes"].abs()
 
-        # 9. Categorize differences
         def classify_difference(minutes: float) -> str:
             if minutes <= 5:
                 return "OK"
-            elif minutes <= 60:
+            if minutes <= 60:
                 return "SUSPICIOUS"
-            else:
-                return "ERROR"
+            return "ERROR"
 
         comparable["comparison_status"] = comparable["abs_time_diff_minutes"].apply(classify_difference)
 
-        # 10. Show suspicious and error cases
         suspicious_rows = comparable[comparable["comparison_status"] == "SUSPICIOUS"]
         error_rows = comparable[comparable["comparison_status"] == "ERROR"]
 
+        if len(missing_received) > 0:
+            print(f"❌ Missing 'received' event: {len(missing_received):,}")
+
         if len(suspicious_rows) > 0:
-            print(f"\n⚠️ Suspicious time differences ({len(suspicious_rows)} sample(s)):")
-            for _, row in suspicious_rows.iterrows():
-                print(
-                    f"   • {row[sample_col]}: "
-                    f"date_received={row[samples_date_col]}, "
-                    f"received_timestamp={row['received_timestamp']}, "
-                    f"diff={row['time_diff_minutes']:.2f} min"
-                )
+            print(f"⚠️ Suspicious time differences: {len(suspicious_rows):,}")
 
         if len(error_rows) > 0:
-            print(f"\n❌ Incorrect time differences ({len(error_rows)} sample(s)):")
-            for _, row in error_rows.iterrows():
-                print(
-                    f"   • {row[sample_col]}: "
-                    f"date_received={row[samples_date_col]}, "
-                    f"received_timestamp={row['received_timestamp']}, "
-                    f"diff={row['time_diff_minutes']:.2f} min"
-                )
+            print(f"❌ Incorrect time differences: {len(error_rows):,}")
 
-        # 11. Invalid dates
-        invalid_samples_dates = samples_subset[samples_subset[samples_date_col].isna()]
-        invalid_received_dates = received_events_unique[received_events_unique["received_timestamp"].isna()]
-
-        # 12. Summary
-        total_samples = samples_subset[sample_col].nunique()
-        ok_count = (comparable["comparison_status"] == "OK").sum()
-        suspicious_count = (comparable["comparison_status"] == "SUSPICIOUS").sum()
-        error_count = (comparable["comparison_status"] == "ERROR").sum()
-
-        print("\n" + "=" * 70)
-        print("📊 SUMMARY:")
-        print(f"   Total samples: {total_samples:,}")
+        print("\n📊 SUMMARY:")
+        print(f"   Total samples: {samples_subset[sample_col].nunique():,}")
         print(f"   Duplicate 'received' sample_ids: {len(duplicate_sample_ids):,}")
         print(f"   Missing 'received' events: {len(missing_received):,}")
-        print(f"   Invalid dates in samples: {len(invalid_samples_dates):,}")
-        print(f"   Invalid received timestamps: {len(invalid_received_dates):,}")
         print(f"   Comparable rows: {len(comparable):,}")
-        print(f"   OK: {ok_count:,}")
-        print(f"   SUSPICIOUS: {suspicious_count:,}")
-        print(f"   ERROR: {error_count:,}")
+        print(f"   OK: {(comparable['comparison_status'] == 'OK').sum():,}")
+        print(f"   SUSPICIOUS: {(comparable['comparison_status'] == 'SUSPICIOUS').sum():,}")
+        print(f"   ERROR: {(comparable['comparison_status'] == 'ERROR').sum():,}")
         print("=" * 70)
 
     @staticmethod
     def check_tests_vs_events(
-            tests_df: pd.DataFrame,
-            events_df: pd.DataFrame,
-            name: str = "Dataset",
-            sample_col: str = "sample_id",
-            test_date_col: str = "test_date",
-            event_type_col: str = "event_type",
-            event_timestamp_col: str = "event_timestamp"
+        tests_df: pd.DataFrame,
+        events_df: pd.DataFrame,
+        name: str = "Dataset",
+        sample_col: str = "sample_id",
+        test_date_col: str = "test_date",
+        event_type_col: str = "event_type",
+        event_timestamp_col: str = "event_timestamp"
     ) -> None:
+        DataInspector._validate_dataframe(tests_df, "tests_df")
+        DataInspector._validate_dataframe(events_df, "events_df")
 
-        if not isinstance(tests_df, pd.DataFrame):
-            raise TypeError("tests_df must be a pandas DataFrame")
+        for col in [sample_col, test_date_col]:
+            DataInspector._validate_column_exists(tests_df, col)
 
-        if not isinstance(events_df, pd.DataFrame):
-            raise TypeError("events_df must be a pandas DataFrame")
-
-        if tests_df.empty:
-            print("⚠️ tests_df is empty!")
-            return
-
-        if events_df.empty:
-            print("⚠️ events_df is empty!")
-            return
-
-        required_tests_cols = [sample_col, test_date_col]
-        required_events_cols = [sample_col, event_type_col, event_timestamp_col]
-
-        for col in required_tests_cols:
-            if col not in tests_df.columns:
-                raise ValueError(f"Column '{col}' not found in tests_df")
-
-        for col in required_events_cols:
-            if col not in events_df.columns:
-                raise ValueError(f"Column '{col}' not found in events_df")
+        for col in [sample_col, event_type_col, event_timestamp_col]:
+            DataInspector._validate_column_exists(events_df, col)
 
         print("=" * 70)
         print(f"📊 TESTS VS LAB_EVENTS VALIDATION: {name}")
         print("=" * 70)
 
-        # 1. Prepare tests
         tests = tests_df[[sample_col, test_date_col]].copy()
         tests[test_date_col] = pd.to_datetime(tests[test_date_col], errors="coerce")
 
-        # 2. Prepare events (pivot: received, started, finished)
         events = events_df.copy()
         events[event_timestamp_col] = pd.to_datetime(events[event_timestamp_col], errors="coerce")
 
         required_events = ["received", "testing_started", "testing_finished"]
-
-        # only important events
         events = events[events[event_type_col].isin(required_events)]
 
-        # pivot -> one line for sample_id
         events_pivot = events.pivot_table(
             index=sample_col,
             columns=event_type_col,
@@ -702,61 +587,32 @@ class DataInspector:
             aggfunc="first"
         ).reset_index()
 
-        # change column name
         events_pivot = events_pivot.rename(columns={
             "received": "received_ts",
             "testing_started": "testing_started_ts",
             "testing_finished": "testing_finished_ts"
         })
 
-        # 3. Merge
         merged = tests.merge(events_pivot, on=sample_col, how="left")
 
-        # 4. Missing events
         missing_events = merged[
             merged[["received_ts", "testing_started_ts", "testing_finished_ts"]].isna().any(axis=1)
         ]
 
-        if len(missing_events) > 0:
-            print(f"❌ {len(missing_events)} tests with missing event timestamps")
-
-        # 5. We remove incomplete ones for further validation
         valid = merged.dropna(
             subset=["received_ts", "testing_started_ts", "testing_finished_ts", test_date_col]
         ).copy()
 
-        # 6. Logical validations
-
-        # test before received
         before_received = valid[valid[test_date_col] < valid["received_ts"]]
-
-        # test before start
         before_start = valid[valid[test_date_col] < valid["testing_started_ts"]]
-
-        # post-test
         after_finish = valid[valid[test_date_col] > valid["testing_finished_ts"]]
 
         correct = valid[
             (valid[test_date_col] >= valid["testing_started_ts"]) &
             (valid[test_date_col] <= valid["testing_finished_ts"])
-            ]
+        ]
 
-        # 7. Result
-
-        if len(before_received) > 0:
-            print(f"\n❌ Tests before 'received': {len(before_received)}")
-            for _, row in before_received.iterrows():
-                print(f"   • {row[sample_col]} | test_date={row[test_date_col]} < received={row['received_ts']}")
-
-        if len(before_start) > 0:
-            print(f"\n⚠️ Tests before 'testing_started': {len(before_start)}")
-
-        if len(after_finish) > 0:
-            print(f"\n❌ Tests after 'testing_finished': {len(after_finish)}")
-
-        # 8. Summary
-        print("\n" + "=" * 70)
-        print("📊 SUMMARY:")
+        print("\n📊 SUMMARY:")
         print(f"   Total tests: {len(tests):,}")
         print(f"   Missing event data: {len(missing_events):,}")
         print(f"   Valid for comparison: {len(valid):,}")
